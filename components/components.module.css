@@ -1,19 +1,33 @@
-.nav{
-    animation : hue 10s infinite linear;
-    margin-top:10px;
+.nav {
+  animation: hue 10s infinite linear;
+  margin-top: 10px;
 }
-@keyframes hue{
-    from{
-      -webkit-filter:hue-rotate(0deg);
-    }
-    to{
-      -webkit-filter:hue-rotate(360deg);
-    }
+@keyframes hue {
+  from {
+    -webkit-filter: hue-rotate(0deg);
   }
-.container{
+  to {
+    -webkit-filter: hue-rotate(360deg);
+  }
+}
+.container {
   background-color: rgba(0, 0, 0, 0.03);
   border-radius: 30px;
-  margin:20px 10px;
-  padding:10px;
+  margin: 20px;
+  padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  perspective: 1000px;
+}
+
+.badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+.list {
+  list-style-type: none;
+  margin: 10px;
+  display: inline-block;
+  font-size: 15px;
 }
