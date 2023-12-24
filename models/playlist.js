@@ -8,6 +8,7 @@ const playListSchema = new mongoose.Schema({
     }]
 })
 
-mongoose.model('playList', playListSchema)
+const playList=mongoose.models.playList||mongoose.model('playList', playListSchema)
+export default playList
 
 
