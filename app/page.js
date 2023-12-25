@@ -2,6 +2,7 @@ import PlayLists from '@/components/PlayLists'
 
 export default function Home() {
   return (
-  <PlayLists/>
+  // <PlayLists/>
+  <div>hello</div>
   )
 }
