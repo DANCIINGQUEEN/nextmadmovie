@@ -2,10 +2,10 @@
   animation: hue 10s infinite linear;
   margin-top: 10px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  margin-bottom:20px;
+  margin-bottom: 20px;
 }
 
-@keyframes fadeIn{
+@keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(-20px);
@@ -44,4 +44,48 @@
   margin: 10px;
   display: inline-block;
   font-size: 15px;
+}
+
+.modalButton {
+  color: black;
+  border: none;
+  font-size: 1.2em;
+  padding: 0.3em 0.5em;
+  margin-right: 0.1em;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background-color 0.5s ease;
+}
+
+.overlay{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  height:100%;
+  background-color: transparent;
+  animation :fadeIn 0.3s ease;
+  transition: background-color 0.5s ease;
+  font-size: 20px;
+}
+.overlay>button{
+  border:none;
+  margin-top:10px;
+  height:50px;
+  border-radius: 50%;
+  background-color: black;
+  color:#FFFFFF;
+}
+.overlay>button:hover{
+  background-color: blue;
+}
+.content{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  padding:10px 0;
+  border-radius: 20px;;
+  
 }

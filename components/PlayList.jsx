@@ -14,8 +14,8 @@ export default function PlayList({ playlist }) {
       cardRef.current.getBoundingClientRect();
     const horizontal = (clientX - left) / width;
     const vertical = (clientY - top) / height;
-    const rotateX = (vertical - 0.5) * -25; // degrees
-    const rotateY = (horizontal - 0.5) * 25; // degrees
+    const rotateX = (vertical - 0.5) * -15; // degrees
+    const rotateY = (horizontal - 0.5) * 15; // degrees
     setRotate({ x: rotateX, y: rotateY });
   };
 
