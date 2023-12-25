@@ -15,7 +15,7 @@ export default async function PlayLists() {
 
   return (
     <>
-      {Object.entries(playlists.playlist).map((playlist) => (
+      {Object.entries(playlists?.playlist).map((playlist) => (
         <PlayList playlist={playlist} key={playlist[1]._id} />
       ))}
     </>
