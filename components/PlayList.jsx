@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useState, useRef } from "react";
 import YoutubeLinks from "./YoutubeLinks";
 import styles from "./components.module.css";
