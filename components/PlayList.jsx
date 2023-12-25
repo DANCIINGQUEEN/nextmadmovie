@@ -27,16 +27,16 @@ export default function PlayList({ playlist }) {
 
   return (
     <div
-      onMouseMove={handleMouseMove}
-      onMouseLeave={resetCardStyle}
-      ref={cardRef}
+      // onMouseMove={handleMouseMove}
+      // onMouseLeave={resetCardStyle}
+      // ref={cardRef}
     >
       <div
-        style={{
-          transform: `rotateY(${rotate.y}deg) rotateX(${rotate.x}deg)`,
-          transition: "transform 0.2s",
-          transformStyle: "preserve-3d",
-        }}
+        // style={{
+        //   transform: `rotateY(${rotate.y}deg) rotateX(${rotate.x}deg)`,
+        //   transition: "transform 0.2s",
+        //   transformStyle: "preserve-3d",
+        // }}
         className={styles.container}
       >
         <Title date={date} id={id} />
