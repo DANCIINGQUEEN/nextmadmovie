@@ -1,0 +1,23 @@
+.uploadContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.uploadContainer > *{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.uploadContainer > button{
+    border:none;
+    border-radius: 5px;
+    background-color: lightpink;
+    padding: 10px;
+}
+
+.uploadContainer > textarea{
+    border:none;
+    border-radius: 15px;
+    padding: 1px;
+    width: 95%;
+    height: 500px;
+}

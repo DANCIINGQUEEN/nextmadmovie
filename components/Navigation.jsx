@@ -25,7 +25,7 @@ export default function Navigation() {
 
       <span style={{ color: "purple" }}>
         <Link
-          href="/playListUpload"
+          href="/upload"
           style={{ textDecoration: "none", color: "purple" }}
         >
           하

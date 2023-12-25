@@ -3,7 +3,9 @@ import { apiUrl } from "../app/api/api";
 
 const getPlaylists = async () => {
   try {
-    const res = await fetch(`${apiUrl}/playlist`);
+    const res = await fetch(`${apiUrl}/playlist`, {
+      cache: "no-store",
+    });
     const playlists = await res.json();
     return { playlists };
   } catch (e) {
