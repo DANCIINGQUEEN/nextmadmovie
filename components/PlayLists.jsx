@@ -13,10 +13,11 @@ const getPlaylists = async () => {
 };
 export default async function PlayLists() {
   const { playlists } = await getPlaylists();
+
   return (
     <>
       {Object.entries(playlists.playlist).map((playlist) => (
-        <PlayList playlist={playlist} key={playlist._id} />
+        <PlayList playlist={playlist} key={playlist[1]._id} />
       ))}
     </>
   );
