@@ -1,5 +1,4 @@
 import PlayList from "./PlayList";
-import styles from "./components.module.css";
 import { apiUrl } from "../app/api/api";
 
 const getPlaylists = async () => {
