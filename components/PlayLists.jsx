@@ -54,10 +54,10 @@ export default function PlayLists() {
             <PlayList playlist={playlist} key={playlist[1]._id} />
           ))}
           <div className={styles.pageContainer}>
-            <button className={styles.pageButton} onClick={() => changePage(1)}>&laquo</button>
+            <button className={styles.pageButton} onClick={() => changePage(1)}>&laquo;</button>
             {currentPage > 1 && (
               <button className={styles.pageButton} onClick={() => changePage(currentPage - 1)}>
-                &lsaquo
+                &lsaquo;
               </button>
             )}
             {pagesToShow().map((page) => (
@@ -67,10 +67,10 @@ export default function PlayLists() {
             ))}
             {currentPage < maxPage && (
               <button className={styles.pageButton} onClick={() => changePage(currentPage + 1)}>
-                &rsaquo
+                &rsaquo;
               </button>
             )}
-            <button className={styles.pageButton} onClick={() => changePage(maxPage)}>&raquo</button>
+            <button className={styles.pageButton} onClick={() => changePage(maxPage)}>&raquo;</button>
           </div>
         </>
       )}
