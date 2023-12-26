@@ -49,7 +49,7 @@ export default async function Date({ params }) {
           <p>{pl.title}</p>
           <YoutubeLink
             link={pl.link}
-            ratio={0.85}
+            ratio={0.95}
             isHome={false}
           />
         </div>

@@ -10,3 +10,4 @@ export default function Title({ date }) {
     </div>
   );
 }
+

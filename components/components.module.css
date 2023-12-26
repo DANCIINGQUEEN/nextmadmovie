@@ -48,7 +48,6 @@
 }
 .video{
   display: flex;
-  /* justify-content: center; */
   align-items: center;
 }
 
@@ -95,5 +94,37 @@
   background-color: transparent;
   padding:10px 0;
   border-radius: 20px;;
-  
+}
+.pageContainer{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.pageButton{
+  display:flex;
+  flex-direction: row;
+  border:none;
+  padding:10px;
+  margin:10px 5px 30px 5px;
+  background-color: transparent;
+}
+.activePaginationButton{
+  display:flex;
+  flex-direction: row;
+  border:none;
+  padding:10px;
+  margin:10px 5px 30px 5px;
+  text-decoration: underline;
+  background-color: transparent;
+  font-weight: bold;
+}
+.paginationButton{
+  display:flex;
+  flex-direction: row;
+  border:none;
+  padding:10px;
+  margin:10px 5px 30px 5px;
+  background-color: transparent;
+  transition: color 0.3s;
 }
