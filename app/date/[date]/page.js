@@ -45,8 +45,10 @@ export default async function Date({ params }) {
   return (
     <html>
         <head>
-            <title>{title}</title>
-            <description>{desc}</description>
+            {/* <title>{title}</title>
+            <description>{desc}</description> */}
+            <meta property="og:title" content={title} />
+            <meta property="og:description" content={desc} />
         </head>
       <body>
         <div className={styles.videoContainer}>

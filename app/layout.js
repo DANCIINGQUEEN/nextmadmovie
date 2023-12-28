@@ -5,8 +5,6 @@ import Navigation from '@/components/Navigation'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'LOL MAD MOVIE',
-  description: '칼바람 하이라이트',
   openGraph: {
     title: 'LOL MAD MOVIE',
     description: '칼바람 하이라이트',
