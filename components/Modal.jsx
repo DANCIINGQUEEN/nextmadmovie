@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 import styles from "./components.module.css";
 export default function Modal({ render, button, multikill }) {
   const [showModal, setShowModal] = useState(false);
-  //   const videoOption = useSelector((state) => state.videoOption);
-  //   const isEnd = useSelector((state) => state.isEnd);
 
   const handleButtonClick = () => setShowModal((prev) => !prev);
 
@@ -12,11 +10,12 @@ export default function Modal({ render, button, multikill }) {
     setShowModal(false);
   };
 
-  //   useEffect(() => {
-  //     if (videoOption && !isEnd) {
-  //       setShowModal(false);
-  //     }
-  //   }, [isEnd, videoOption]);
+  // const isPlaying = localStorage.getItem("isPlaying");
+  // useEffect(() => {
+  //   console.log(isPlaying);
+  //   !isPlaying &&setShowModal(false);
+  //    setShowModal(isPlaying === "true");
+  // }, [isPlaying]);
 
   return (
     <>

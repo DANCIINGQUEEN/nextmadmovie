@@ -1,0 +1,35 @@
+.cover {
+  width: 100vw;
+  margin-bottom: 10rem;
+  display: flex;
+}
+
+.cover:nth-child(2) {
+  margin-top: 50px;
+  transform: rotate(-2deg);
+background-color: rgba(255, 55, 150, 0.3);
+}
+
+.cover:nth-child(3) {
+  transform: rotate(2deg);
+background-color: rgba(88, 0, 255, 0.3);
+  justify-content: flex-end;
+}
+
+.cover:nth-child(4) {
+  transform: rotate(-2deg);
+background-color: rgba(236, 254, 4, 0.3);
+}
+
+.cover:nth-child(5) {
+  transform: rotate(2deg);
+background-color: rgba(0, 250, 172, 0.3);
+  justify-content: flex-end;
+  /* margin-bottom: 50vh; */
+}
+
+.content {
+  display: flex;
+  padding: 1rem 0;
+  font-size: 5rem;
+}

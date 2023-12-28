@@ -8,10 +8,15 @@ export default function YoutubeLink({ link, ratio, isHome }) {
   const [playerWidth, setPlayerWidth] = useState(0);
   const [playerHeight, setPlayerHeight] = useState(0);
 
-
   // 재생 상태 변경 핸들러
   const handlePlayToggle = () => setIsPlaying(!isPlaying);
+  
 
+  useEffect(() => {
+    // localstorage에 isPlaying값 저장
+    localStorage.setItem("isPlaying", JSON.stringify(isPlaying));
+  }, [isPlaying]);
+  
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
@@ -44,22 +49,31 @@ export default function YoutubeLink({ link, ratio, isHome }) {
     height: playerHeight,
     width: playerWidth,
     playerVars: {
-        autoplay: 1,
+      autoplay: 1,
     },
-};
+  };
 
-const videoCode=link.toString().split('watch?v=')[1]
-const source=`https://img.youtube.com/vi/${videoCode}/maxresdefault.jpg`
+  const videoCode = link.toString().split("watch?v=")[1];
+  const source = `https://img.youtube.com/vi/${videoCode}/maxresdefault.jpg`;
 
-const videoComponent=<Youtube videoId={videoCode} opts={opts} onEnd={handlePlayToggle}/>
-const thumbnailComponent=<img src={source} alt="thumbnail" className={styles.thumbnail} onClick={handlePlayToggle} style={{width: playerWidth, borderRadius: '20px'}}/>
+  const videoComponent = (
+    <Youtube videoId={videoCode} opts={opts} onEnd={handlePlayToggle} />
+  );
+  const thumbnailComponent = (
+    <img
+      src={source}
+      alt="thumbnail"
+      onClick={handlePlayToggle}
+      style={{ width: playerWidth}}
+    />
+  );
   return (
     <div className={styles.video}>
-            {isHome ?
-                videoComponent
-                :
-                (isPlaying ? videoComponent : thumbnailComponent)
-            }
-        </div>
+      {isHome
+        ? videoComponent
+        : isPlaying
+        ? videoComponent
+        : thumbnailComponent}
+    </div>
   );
 }

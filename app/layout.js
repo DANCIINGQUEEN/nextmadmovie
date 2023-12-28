@@ -11,12 +11,6 @@ export const metadata = {
     title: 'LOL MAD MOVIE',
     description: '칼바람 하이라이트',
     siteName: 'LOL MAD MOVIE',
-    // images: [
-    //   {
-    //     url: './ARAM.png',
-    //     width: 800,
-    //     height: 600,
-    //   }]
     }
 }
 

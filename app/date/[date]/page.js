@@ -38,22 +38,27 @@ export default async function Date({ params }) {
   const { date } = params;
   const dateParts = date.split`-`;
   const title = `${dateParts[0]}년 ${dateParts[1]}월 ${dateParts[2]}일의 영상들`;
+  const desc = `${dateParts[0]}년 ${dateParts[1]}월 ${dateParts[2]}일의 하이라이트`;
 
   const { playlist } = await getPlaylistByDate(date);
 
   return (
-    <div className={styles.videoContainer}>
-      <h4>{title}</h4>
-      {playlist?.video.map((pl) => (
-        <div className={styles.video} key={pl._id}>
-          <p>{pl.title}</p>
-          <YoutubeLink
-            link={pl.link}
-            ratio={0.95}
-            isHome={false}
-          />
+    <html>
+        <head>
+            <title>{title}</title>
+            <description>{desc}</description>
+        </head>
+      <body>
+        <div className={styles.videoContainer}>
+          <h3>{title}</h3>
+          {playlist?.video.map((pl) => (
+            <div className={styles.video} key={pl._id}>
+              <p>{pl.title}</p>
+              <YoutubeLink link={pl.link} ratio={0.95} isHome={false} />
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </body>
+    </html>
   );
 }
