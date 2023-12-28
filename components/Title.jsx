@@ -6,7 +6,7 @@ export default function Title({ date }) {
       <p>{date}</p>
       &nbsp;
       &nbsp;
-      <Link href={`/date/${date}`}>전체보기</Link>
+      <Link href={`/${date}`}>전체보기</Link>
     </div>
   );
 }
