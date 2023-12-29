@@ -7,15 +7,25 @@ import { useRouter } from "next/navigation";
 
 export default function Edit() {
   const [searchDate, setSearchDate] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isEditLoading, setIsEditLoading] = useState(false);
   const [playlist, setPlaylist] = useState(null);
   const [playlistId, setPlaylistId] = useState("");
   const [editedPlaylist, setEditedPlaylist] = useState(null);
   const [error, setError] = useState("");
+  
+  const [isLoading, setIsLoading] = useState(false);
+  const [isEditLoading, setIsEditLoading] = useState(false);
+  const [isDeleteLoading, setIsDeleteLoading] = useState(false);
 
   const router = useRouter();
 
+  const mapVideos = (videos) =>
+    videos.map(({ title, link }) => ({ title, link }));
+
+  const handleError = (message) => {
+    console.error(message);
+    setError(message);
+    setTimeout(() => setError(""), 2000);
+  };
   const searchPlaylist = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -25,20 +35,12 @@ export default function Edit() {
         throw new Error("no playlist");
       }
       setPlaylistId(playlist.playlist._id);
-      let video = playlist.playlist.video;
-      video = video.map((video) => ({
-        title: video.title,
-        link: video.link,
-      }));
+      const video = mapVideos(playlist.playlist.video);
       const date = playlist.playlist.date;
       const formattedJson = JSON.stringify({ date, video }, null, 1);
       setPlaylist(formattedJson);
     } catch (e) {
-      console.error(e);
-      setError("no playlist");
-      setTimeout(() => {
-        setError("");
-      }, 2000);
+      handleError("no playlist");
     } finally {
       setIsLoading(false);
     }
@@ -50,20 +52,33 @@ export default function Edit() {
     try {
       const res = await fetch(`${apiUrl}/${playlistId}`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: editedPlaylist,
       });
-      if (!res.ok) {
-        throw new Error("An error occurred");
-      }
+      if (!res.ok) throw new Error("An error occurred");
       router.push("/");
       router.refresh();
     } catch (e) {
       console.error("error", e);
+    } finally {
+      setIsEditLoading(false);
+    }
+  };
+
+  const handleDeletePlaylist = async (e) => {
+    setIsDeleteLoading(true)
+    e.preventDefault()
+    try{
+      const res=await fetch(`${apiUrl}/${playlistId}`,{
+        method:"DELETE"
+      })
+      if(!res.ok) throw new Error("An error occurred")
+      router.push('/')
+      router.refresh()
+      }catch(e){
+        console.error("error",e)
     }finally{
-      setIsEditLoading(false)
+      setIsDeleteLoading(false)
     }
   };
   return (
@@ -81,7 +96,12 @@ export default function Edit() {
               defaultValue={playlist}
               onChange={(e) => setEditedPlaylist(e.target.value)}
             />
-            <button type="submit">{isEditLoading?'수정중...':'수정'}</button>
+            <div>
+              <button type="submit">
+                {isEditLoading ? "수정중..." : "수정"}
+              </button>
+              <button onClick={handleDeletePlaylist}>{isDeleteLoading ? "삭제중..." : "삭제"}</button>
+            </div>
           </>
         )}
       </form>

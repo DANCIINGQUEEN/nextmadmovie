@@ -21,9 +21,7 @@ export default function PlayLists() {
     const fetchPlaylists = async () => {
       setLoading(true)
       try {
-        const res = await fetch(`${apiUrl}/playlist`, {
-          cache: "no-store",
-        })
+        const res = await fetch(`${apiUrl}/playlist`)
         const data = await res.json()
         setPlaylists(data || [])
       } catch (e) {

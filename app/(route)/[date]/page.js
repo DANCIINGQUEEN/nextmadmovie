@@ -31,7 +31,7 @@ export default async function DatePage ({ params }){
   return (
     <div className={styles.videoContainer}>
       <h4>{title}</h4>
-      {playlist?.playlist.video.map((pl) => (
+      {playlist?.playlist?.video.map((pl) => (
         <div className={styles.video} key={pl._id}>
           <p>{pl.title}</p>
           <YoutubeLink link={pl.link} ratio={0.95} isHome={false} />
