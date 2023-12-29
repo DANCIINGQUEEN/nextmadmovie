@@ -13,3 +13,4 @@ export async function GET(req, {params}){
         return NextResponse.json({error: 'An error occurred'}, {status:500})
     }
 }
+

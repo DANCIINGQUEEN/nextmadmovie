@@ -40,6 +40,13 @@
   align-items: center;
   font-weight: bold;
 }
+.badge button{
+  border:none;
+  background-color: transparent;
+  margin-left: 5px;
+  font-weight:lighter;
+  font-size: 12px;
+}
 .list {
   list-style-type: none;
   margin: 10px;

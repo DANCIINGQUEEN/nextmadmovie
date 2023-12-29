@@ -1,4 +1,4 @@
-import PlayLists from '@/components/PlayLists'
+import PlayLists from '@/app/_components/PlayLists'
 
 export default function Home() {
   return <PlayLists/>

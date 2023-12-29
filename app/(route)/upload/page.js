@@ -1,7 +1,7 @@
 "use client"
 import {useState} from 'react'
 import { useRouter } from 'next/navigation'
-import { apiUrl } from '../api/api'
+import { apiUrl } from '../../api/api'
 import styles from './page.module.css'
 export default function Upload() {
     const [jsonInput, setJsonInput] = useState('')

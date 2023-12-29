@@ -1,6 +1,6 @@
 "use client"
 import PlayList from "./PlayList"
-import { apiUrl } from "../app/api/api"
+import { apiUrl } from "../api/api"
 import styles from "./components.module.css"
 import { useState, useEffect } from "react"
 

@@ -1,46 +1,6 @@
-// import Head from 'next/head';
-
-// export default function Page({ date }) {
-//   return (
-//     <>
-//       <Head>
-//         <title>{date}</title>
-//         <meta property="og:title" content={`Date: ${date}`} />
-//         {/* 다른 Open Graph 태그도 여기에 추가 */}
-//       </Head>
-//       <div>
-//         <h1>Date: {date}</h1>
-//         {/* 페이지 콘텐츠 */}
-//       </div>
-//     </>
-//   );
-// }
-
-// export default function Page() {
-//     return (
-//         <>
-
-//         <div>
-//             <h1>Date</h1>
-//             {/* 페이지 콘텐츠 */}
-//         </div>
-//         </>
-//     );
-//     }
-
-// export async function getServerSideProps(context) {
-//   const { params } = context;
-//   console.log(params)
-//   return {
-//     props: {
-//       date: params.date // URL에서 date 매개변수 추출
-//     },
-//   };
-// }
-
 import getPlaylistByDate from "@/libs/getPlayListByDate";
 import styles from "./page.module.css";
-import YoutubeLink from "@/components/YoutubeLink";
+import YoutubeLink from "@/app/_components/YoutubeLink";
 
 export async function generateMetadata({ params: { date } }) {
   const dateParts = date.split("-");
@@ -52,7 +12,7 @@ export async function generateMetadata({ params: { date } }) {
     openGraph: {
       title: title,
       description: desc,
-      site_name: "LOL MAD MOVIE",
+      site_name: "LOL MAD MOVIE", 
     },
     robots: {
       index: false,
@@ -62,7 +22,7 @@ export async function generateMetadata({ params: { date } }) {
   };
 }
 
-const DatePage = async ({ params }) => {
+export default async function DatePage ({ params }){
   const date = params.date;
   const dateParts = date.split("-");
   const title = `${dateParts[0]}년 ${dateParts[1]}월 ${dateParts[2]}일의 영상들`;
@@ -81,4 +41,4 @@ const DatePage = async ({ params }) => {
   );
 };
 
-export default DatePage;
+
