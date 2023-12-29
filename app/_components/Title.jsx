@@ -17,9 +17,6 @@ export default function Title({ date }) {
 
   return (
     <div className={styles.badge}>
-      <p>{date}</p>
-      &nbsp;
-      &nbsp;
       <Link href={`/${date}`}>전체보기</Link>
       <button onClick={copyToClipboard}>
         {copied ? "copied!" : "copy"}

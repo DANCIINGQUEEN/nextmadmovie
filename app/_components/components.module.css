@@ -32,6 +32,50 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   perspective: 1000px;
   animation: fadeIn 0.7s ease;
+  position:relative;
+}
+.ribbon {
+  position: absolute;
+  left: -5px; top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 75px; height: 75px;
+  text-align: right;
+}
+.ribbon > span {
+  font-size: 10px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  width: 100px;
+  display: block;
+  background: #79A70A;
+  background: linear-gradient(#2989d8 0%, #1e5799 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 19px; left: -21px;
+}
+.ribbon span::before {
+  content: "";
+  position: absolute; left: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid #1e5799;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #1e5799;
+}
+.ribbon span::after {
+  content: "";
+  position: absolute; right: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #1e5799;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #1e5799;
 }
 
 .badge {
@@ -67,6 +111,8 @@
   margin-right: 0.1em;
   text-decoration: none;
   border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+
   transition: background-color 0.5s ease;
 }
 
@@ -159,4 +205,27 @@
   background-color: #fff;
   border-radius: 50%;
   transition:0.3s;
+}
+.load{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.loader {
+  height:10px;
+  width:130px;
+  background:
+   linear-gradient(#766DF4 0 0),
+   linear-gradient(#766DF4 0 0),
+   #E4E4ED;
+ background-size: 60% 100%;
+ background-repeat: no-repeat;
+ animation: p6 3s infinite;
+}
+
+@keyframes p6 {
+ 0%   {background-position:-150% 0,-150% 0}
+ 66%  {background-position: 250% 0,-150% 0}
+ 100% {background-position: 250% 0, 250% 0}
 }

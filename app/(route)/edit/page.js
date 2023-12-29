@@ -3,8 +3,6 @@ import getPlaylistByDate from "@/libs/getPlayListByDate";
 import EditForm from "./EditForm";
 import { useState } from "react";
 import styles from "./page.module.css";
-import { apiUrl } from "@/app/api/api";
-import { useRouter } from "next/navigation";
 
 export default function Edit() {
   const [searchDate, setSearchDate] = useState("");

@@ -10,13 +10,6 @@ export default function Modal({ render, button, multikill }) {
     setShowModal(false);
   };
 
-  // const isPlaying = localStorage.getItem("isPlaying");
-  // useEffect(() => {
-  //   console.log(isPlaying);
-  //   !isPlaying &&setShowModal(false);
-  //    setShowModal(isPlaying === "true");
-  // }, [isPlaying]);
-
   return (
     <>
       <button
