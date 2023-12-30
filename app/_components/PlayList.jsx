@@ -7,7 +7,6 @@ import Title from "./Title";
 export default function PlayList({ playlist }) {
   
   const date = playlist[1].date;
-  const id = playlist[1]._id;
 
   return (
       <div className={styles.container}>
