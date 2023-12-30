@@ -1,6 +1,6 @@
 import getPlaylistByDate from "@/libs/getPlayListByDate";
 import styles from "./page.module.css";
-import YoutubeLink from "@/app/_components/YoutubeLink";
+import Card from "./Card";
 
 export async function generateMetadata({ params: { date } }) {
   const dateParts = date.split("-");
@@ -31,12 +31,7 @@ export default async function DatePage ({ params }){
   return (
     <div className={styles.videoContainer}>
       <h4>{title}</h4>
-      {playlist?.playlist?.video.map((pl) => (
-        <div className={styles.video} key={pl._id}>
-          <p>{pl.title}</p>
-          <YoutubeLink link={pl.link} ratio={0.95} isHome={false} />
-        </div>
-      ))}
+      {playlist?.playlist?.video.map((pl) => <Card video={pl} key={pl._id} />)}
     </div>
   );
 };

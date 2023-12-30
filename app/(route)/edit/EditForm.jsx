@@ -29,16 +29,22 @@ export default function EditForm({ playlist, id }) {
   };
 
   const handleDeletePlaylist = async (e) => {
-    setIsDeleteLoading(true);
-    e.preventDefault();
-    try {
-      await deletePlaylist(id);
-      router.push("/");
-      router.refresh();
-    } catch (e) {
-      console.error("error", e);
-    } finally {
+    const confirmed=confirm("정말 지울건가?")
+    // e.preventDefault();
+    if(confirmed){
+      setIsDeleteLoading(true);
+      try {
+        await deletePlaylist(id);
+        router.push("/");
+        router.refresh();
+      } catch (e) {
+        console.error("error", e);
+      } finally {
+        setIsDeleteLoading(false);
+      }
+    }else{
       setIsDeleteLoading(false);
+      return;
     }
   };
 

@@ -4,26 +4,20 @@ import Loading from "./Loading";
 import { apiUrl } from "../api/api";
 import styles from "./components.module.css";
 import { useState } from "react";
+import Pagination from "./pagination";
 
 export default function PlayLists({playlists}) {
-  // const [playlists, setPlaylists] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태 관리
 
+  const CARD_PER_PAGE = 5; // 페이지당 표시할 항목 수
   const playlistLength = playlists?.playlist?.length;
-  const maxPage = Math.ceil(playlistLength / 5);
-  const itemsPerPage = 5; // 페이지당 표시할 항목 수
+  const maxPage = Math.ceil(playlistLength / CARD_PER_PAGE);
+
   const paginatedPlaylist = playlists?.playlist?.slice(
-    (currentPage - 1) * itemsPerPage,
-    (currentPage - 1) * itemsPerPage + itemsPerPage
+    (currentPage - 1) * CARD_PER_PAGE,
+    (currentPage - 1) * CARD_PER_PAGE + CARD_PER_PAGE
   );
 
-  const pagesToShow = () => {
-    const pages = [];
-    for (let i = currentPage - 2; i <= currentPage + 2; i++) {
-      if (i > 0 && i <= maxPage) pages.push(i);
-    }
-    return pages;
-  };
   const changePage = (page) => {
     if (page >= 1 && page <= maxPage) setCurrentPage(page);
   };
@@ -35,46 +29,11 @@ export default function PlayLists({playlists}) {
           {Object.entries(paginatedPlaylist).map((playlist) => (
             <PlayList playlist={playlist} key={playlist[1]._id} />
           ))}
-          <div className={styles.pageContainer}>
-            <button className={styles.pageButton} onClick={() => changePage(1)}>
-              &laquo;
-            </button>
-            {currentPage > 1 && (
-              <button
-                className={styles.pageButton}
-                onClick={() => changePage(currentPage - 1)}
-              >
-                &lsaquo;
-              </button>
-            )}
-            {pagesToShow().map((page) => (
-              <button
-                className={
-                  currentPage == page
-                    ? styles.activePaginationButton
-                    : styles.paginationButton
-                }
-                key={page}
-                onClick={() => changePage(page)}
-              >
-                {page}
-              </button>
-            ))}
-            {currentPage < maxPage && (
-              <button
-                className={styles.pageButton}
-                onClick={() => changePage(currentPage + 1)}
-              >
-                &rsaquo;
-              </button>
-            )}
-            <button
-              className={styles.pageButton}
-              onClick={() => changePage(maxPage)}
-            >
-              &raquo;
-            </button>
-          </div>
+           <Pagination
+            currentPage={currentPage}
+            maxPage={maxPage}
+            onChangePage={changePage}
+          />
         </>
       )}
     </div>
