@@ -1,4 +1,5 @@
 "use client"
+import Modal2 from '@/app/_components/Modal2';
 // import React, { useState, useEffect, useRef } from 'react';
 import styles from './page.module.css'
 
@@ -131,6 +132,7 @@ const MarqueeComponent = () => {
   return (
     <div className={styles.cover}>
       <Marquee textArray={textArr1} direction="1" />
+      <Modal2/>
       {/* <Marquee textArray={textArr2} direction="right" />
       <Marquee textArray={textArr3} direction="left" />
       <Marquee textArray={textArr4} direction="right" /> */}

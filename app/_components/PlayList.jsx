@@ -11,7 +11,9 @@ export default function PlayList({ playlist }) {
 
   return (
       <div className={styles.container}>
-          <div class={styles.ribbon}><span>{date}</span></div>
+          <div className={styles.ribbon}>
+            <span>{date}</span>
+          </div>
           <Title date={date} />
         <YoutubeLinks videos={playlist[1].video} />
       </div>

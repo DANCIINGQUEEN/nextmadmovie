@@ -3,12 +3,11 @@ import PlayList from "./PlayList";
 import Loading from "./Loading";
 import { apiUrl } from "../api/api";
 import styles from "./components.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-export default function PlayLists() {
-  const [playlists, setPlaylists] = useState([]);
+export default function PlayLists({playlists}) {
+  // const [playlists, setPlaylists] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태 관리
-  const [loading, setLoading] = useState(false); // 로딩 상태 관리
 
   const playlistLength = playlists?.playlist?.length;
   const maxPage = Math.ceil(playlistLength / 5);
@@ -17,22 +16,6 @@ export default function PlayLists() {
     (currentPage - 1) * itemsPerPage,
     (currentPage - 1) * itemsPerPage + itemsPerPage
   );
-
-  useEffect(() => {
-    setLoading(true);
-    const fetchPlaylists = async () => {
-      try {
-        const res = await fetch(`${apiUrl}/playlist`);
-        const data = await res.json();
-        setPlaylists(data || []);
-      } catch (e) {
-        console.error(e);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPlaylists();
-  }, []);
 
   const pagesToShow = () => {
     const pages = [];
@@ -47,7 +30,6 @@ export default function PlayLists() {
 
   return (
     <div>
-      <div className={styles.load}>{loading && <Loading />}</div>
       {paginatedPlaylist && (
         <>
           {Object.entries(paginatedPlaylist).map((playlist) => (

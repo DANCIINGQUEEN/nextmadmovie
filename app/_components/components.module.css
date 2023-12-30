@@ -32,20 +32,22 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   perspective: 1000px;
   animation: fadeIn 0.7s ease;
-  position:relative;
+  position: relative;
 }
 .ribbon {
   position: absolute;
-  left: -5px; top: -5px;
+  left: -5px;
+  top: -5px;
   z-index: 1;
   overflow: hidden;
-  width: 75px; height: 75px;
+  width: 75px;
+  height: 75px;
   text-align: right;
 }
 .ribbon > span {
   font-size: 10px;
   font-weight: bold;
-  color: #FFF;
+  color: #fff;
   text-transform: uppercase;
   text-align: center;
   line-height: 20px;
@@ -53,15 +55,18 @@
   -webkit-transform: rotate(-45deg);
   width: 100px;
   display: block;
-  background: #79A70A;
+  background: #79a70a;
   background: linear-gradient(#2989d8 0%, #1e5799 100%);
   box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
   position: absolute;
-  top: 19px; left: -21px;
+  top: 19px;
+  left: -21px;
 }
 .ribbon span::before {
   content: "";
-  position: absolute; left: 0px; top: 100%;
+  position: absolute;
+  left: 0px;
+  top: 100%;
   z-index: -1;
   border-left: 3px solid #1e5799;
   border-right: 3px solid transparent;
@@ -70,7 +75,9 @@
 }
 .ribbon span::after {
   content: "";
-  position: absolute; right: 0px; top: 100%;
+  position: absolute;
+  right: 0px;
+  top: 100%;
   z-index: -1;
   border-left: 3px solid transparent;
   border-right: 3px solid #1e5799;
@@ -84,11 +91,11 @@
   align-items: center;
   font-weight: bold;
 }
-.badge button{
-  border:none;
+.badge button {
+  border: none;
   background-color: transparent;
   margin-left: 5px;
-  font-weight:lighter;
+  font-weight: lighter;
   font-size: 12px;
 }
 .list {
@@ -97,11 +104,10 @@
   display: inline-block;
   font-size: 15px;
 }
-.video{
+.video {
   display: flex;
   align-items: center;
 }
-
 
 .modalButton {
   color: black;
@@ -116,116 +122,187 @@
   transition: background-color 0.5s ease;
 }
 
-.overlay{
-  display:flex;
+.overlay {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   background-color: transparent;
-  animation :fadeIn 0.3s ease;
+  animation: fadeIn 0.3s ease;
   transition: background-color 0.5s ease;
   font-size: 20px;
 }
-.close{
-  border:none;
-  margin-top:10px;
-  height:50px;
-  width:50px;
+.close {
+  border: none;
+  margin-top: 10px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   background-color: black;
-  color:#FFFFFF;
+  color: #ffffff;
 }
-.close:hover{
+.close:hover {
   background-color: blue;
 }
-.content{
-  display:flex;
+.content {
+  display: flex;
   flex-direction: column;
   align-items: center;
   background-color: transparent;
-  padding:10px 0;
-  border-radius: 20px;;
+  padding: 10px 0;
+  border-radius: 20px;
 }
-.pageContainer{
-  display:flex;
+.pageContainer {
+  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
 }
-.pageButton{
-  display:flex;
+.pageButton {
+  display: flex;
   flex-direction: row;
-  border:none;
-  padding:10px;
-  margin:10px 5px 30px 5px;
+  border: none;
+  padding: 10px;
+  margin: 10px 5px 30px 5px;
   background-color: transparent;
 }
-.activePaginationButton{
-  display:flex;
+.activePaginationButton {
+  display: flex;
   flex-direction: row;
-  border:none;
-  padding:10px;
-  margin:10px 5px 30px 5px;
+  border: none;
+  padding: 10px;
+  margin: 10px 5px 30px 5px;
   text-decoration: underline;
   background-color: transparent;
   font-weight: bold;
 }
-.paginationButton{
-  display:flex;
+.paginationButton {
+  display: flex;
   flex-direction: row;
-  border:none;
-  padding:10px;
-  margin:10px 5px 30px 5px;
+  border: none;
+  padding: 10px;
+  margin: 10px 5px 30px 5px;
   background-color: transparent;
   transition: color 0.3s;
 }
-.toggleWrapper{
-  display:flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin:20px;
-}
-.toggle{
-  display:flex;
-  align-items: center;
-  width:40px;
-  height:20px;
-  border-radius: 15px;
-  position:relative;
-  cursor:pointer;
-}
-.toggle::before{
-  content:'';
-  position:absolute;
-  width:16px;
-  height:16px;
-  background-color: #fff;
-  border-radius: 50%;
-  transition:0.3s;
-}
-.load{
+.load {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 .loader {
-  height:10px;
-  width:130px;
-  background:
-   linear-gradient(#766DF4 0 0),
-   linear-gradient(#766DF4 0 0),
-   #E4E4ED;
- background-size: 60% 100%;
- background-repeat: no-repeat;
- animation: p6 3s infinite;
+  height: 10px;
+  width: 130px;
+  background: linear-gradient(#766df4 0 0), linear-gradient(#766df4 0 0),
+    #e4e4ed;
+  background-size: 60% 100%;
+  background-repeat: no-repeat;
+  animation: p6 3s infinite;
 }
 
 @keyframes p6 {
- 0%   {background-position:-150% 0,-150% 0}
- 66%  {background-position: 250% 0,-150% 0}
- 100% {background-position: 250% 0, 250% 0}
+  0% {
+    background-position: -150% 0, -150% 0;
+  }
+  66% {
+    background-position: 250% 0, -150% 0;
+  }
+  100% {
+    background-position: 250% 0, 250% 0;
+  }
+}
+
+.modal {
+  background: dodgerblue;
+  height: 1px;
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease 0.5s, height 0.5s ease;
+  width: 0;
+}
+
+.modalContent {
+  color: transparent;
+  font-family: "Consolas", arial, sans-serif;
+  font-size: 2em;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  transform: translate3d(0, -50%, 0);
+  transition: color 0.5s ease;
+  width: 100%;
+}
+
+.modalLabel {
+  color: dodgerblue;
+  cursor: pointer;
+  font-family: "Consolas", arial, sans-serif;
+  font-size: 2em;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  text-transform: uppercase;
+  transform: translate(-50%, -50%);
+  transition: color 0.5s ease 0.5s;
+}
+
+.modalInput {
+  cursor: pointer;
+  height: 0;
+  opacity: 0;
+  width: 0;
+
+ 
+}
+.modalInput:focus{
+  outline: none;
+}
+
+.modalInput:checked {
+  height: 40px;
+  opacity: 1;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 1;
+  width: 40px;
+}
+.modalInput:checked::before {
+  border-top: 1px solid #fff;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: rotate(45deg);
+  width: 100%;
+}
+.modalInput:checked::after {
+  border-top: 1px solid #fff;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: rotate(45deg);
+  width: 100%;
+  transform: rotate(-45deg);
+}
+
+.modalInput:checked + label {
+  color: #fff;
+  transition: color 0.5s ease;
+}
+
+.modalInput:checked ~ .modal {
+  height: 100%;
+  width: 100%;
+  transition: width 0.5s ease, height 0.5s ease 0.5s;
+  .content {
+    color: #fff;
+    transition: color 0.5s ease 0.5s;
+  }
 }
