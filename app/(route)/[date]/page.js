@@ -1,6 +1,7 @@
 import getPlaylistByDate from "@/libs/getPlayListByDate";
 import styles from "./page.module.css";
 import Card from "./Card";
+import Link from "next/link";
 
 export async function generateMetadata({ params: { date } }) {
   const dateParts = date.split("-");
@@ -30,6 +31,7 @@ export default async function DatePage ({ params }){
   const playlist = await getPlaylistByDate(date);
   return (
     <div className={styles.videoContainer}>
+      <Link href={'/'} className={styles.goHome}>← home</Link>
       <h4>{title}</h4>
       {playlist?.playlist?.video.map((pl) => <Card video={pl} key={pl._id} />)}
     </div>

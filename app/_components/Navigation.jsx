@@ -1,7 +1,7 @@
 import styles from './components.module.css'
 import Link from 'next/link';
 
-const deco={textDecoration: "none"}
+const deco={textDecoration: "none", color:"skyblue"}
 const navBarContent = [
   {link: '/', text: 'LOL', style: {deco, color: "blue"}},
   {link: '/', text: ' ', style: {deco}},
@@ -14,10 +14,18 @@ const navBarContent = [
   // {link: '/', text: '이', style: {deco, color: "orange"}},
   // {link: '/', text: '트', style: {deco, color: "hotpink"}},
 ]
+const navBarContent2 = [
+  {link: '/', text: 'LOL', style: {deco, color:"skyblue"}},
+  {link: '/', text: ' ', style: {deco}},
+  {link: '/upload', text: 'MAD', style: {deco, color:"skyblue"}},
+  {link: '/', text: ' ', style: {deco}},
+  {link: '/edit', text: 'MOVIE', style: {deco, color:"skyblue"}},
+]
+
 export default function Navigation() {
   return (
     <h1 className={styles.nav}>
-      {navBarContent.map((content, i) => 
+      {navBarContent2.map((content, i) => 
           <Link key={i} href={content.link} style={content.style}>
             {content.text}
           </Link>

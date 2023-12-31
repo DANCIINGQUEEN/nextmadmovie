@@ -4,20 +4,18 @@
   align-items: center;
   width: 100%;
 }
+.goHome{
+  margin-right: calc(100% - 100px);
+  text-decoration: none;
+}
 
 .video {
   margin-top: 20px;
   margin-bottom: 20px;
-  padding: 5px 0;
+  padding-top: 5px;
   background-color: rgba(0, 0, 0, 0.07);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 999; */
 }
 .video p {
   font-weight: bold;

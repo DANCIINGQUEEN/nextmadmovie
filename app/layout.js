@@ -4,6 +4,7 @@ import Navigation from '@/app/_components/Navigation'
 
 const inter = Inter({ subsets: ['latin'] })
 
+
 export const metadata = {
   openGraph: {
     title: 'LOL MAD MOVIE',
@@ -15,8 +16,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html>
-      <body className={inter.className}>
-        <Navigation />
+      <body>
+        <Navigation/>
         {children}
         </body>
     </html>
