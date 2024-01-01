@@ -2,11 +2,18 @@
 import PlayList from "./PlayList";
 import FiltersPlayLists from "./FiltersPlayLists";
 import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
 import Pagination from "./pagination";
 import styles from "./components.module.css";
+import { v4 } from "uuid";
+import oldPlayLists4 from '../../libs/oldplaylists4';
+import oldPlayLists3 from '../../libs/oldplaylists3';
+import oldPlayLists2 from '../../libs/oldplaylists2';
+import oldPlayLists1 from '../../libs/oldplaylists1';
+
+
 
 export default function PlayLists({ playlists }) {
+  const playlist=playlists.playlist.concat(oldPlayLists4).concat(oldPlayLists3).concat(oldPlayLists2).concat(oldPlayLists1)
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태 관리
   const [filteredCurrentPage, setFilteredCurrentPage] = useState(1); // 필터 페이지 상태 관리
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,15 +23,15 @@ export default function PlayLists({ playlists }) {
 };
 
   const CARD_PER_PAGE = 5; // 페이지당 표시할 항목 수
-  const playlistLength = playlists?.playlist?.length;
+  const playlistLength = playlist?.length;
   const maxPage = Math.ceil(playlistLength / CARD_PER_PAGE);
 
-  const paginatedPlaylist = playlists?.playlist?.slice(
+  const paginatedPlaylist = playlist?.slice(
     (currentPage - 1) * CARD_PER_PAGE,
     (currentPage - 1) * CARD_PER_PAGE + CARD_PER_PAGE
   );
 
-  let filteredPlaylists = playlists?.playlist?.filter((pl) =>
+  let filteredPlaylists = playlist?.filter((pl) =>
     pl.video.some((v) =>
       v.title.toLowerCase().includes(searchTerm.toLowerCase())
     )
@@ -44,6 +51,8 @@ export default function PlayLists({ playlists }) {
   };
   const changeFilteredPage = (page) => {
     if (page >= 1 && page <= maxfilterdPage) setFilteredCurrentPage(page);
+    handlePageNumberClick();
+
   };
 
   
@@ -60,7 +69,7 @@ export default function PlayLists({ playlists }) {
       {!searchTerm ? (
         <>
           {Object.entries(paginatedPlaylist).map((playlist) => (
-            <PlayList playlist={playlist} key={playlist[1]._id} />
+            <PlayList playlist={playlist} key={playlist[1]._id?playlist[1]._id:v4()} />
           ))}
           <Pagination
             currentPage={currentPage}
@@ -73,7 +82,7 @@ export default function PlayLists({ playlists }) {
           {filteredPlaylists.map((playlist) => (
             <FiltersPlayLists
               playlist={playlist}
-              key={playlist._id}
+              key={playlist[1]._id?playlist[1]._id:v4()}
               term={searchTerm}
             />
           ))}

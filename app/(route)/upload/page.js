@@ -3,16 +3,23 @@ import {useState} from 'react'
 import { useRouter } from 'next/navigation'
 import { apiUrl } from '../../api/api'
 import styles from './page.module.css'
+
 export default function Upload() {
     const [jsonInput, setJsonInput] = useState('')
     const [prettyJson, setPrettyJson] = useState('')
     const [loading, setLoading] = useState(false)
+    const [sameDateError, setSameDateError] = useState('')
 
     const handleJsonChange = e => setJsonInput(e.target.value)
 
     const router = useRouter()
     
 
+    const handleSameDateError = (message) => {
+        console.error(message)
+        setSameDateError(message)
+        setTimeout(() => setSameDateError(''), 2000)
+    }
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
@@ -32,10 +39,11 @@ export default function Upload() {
                 router.push('/')
                 router.refresh()
             }else{
-                throw new Error(res.json().message)
+                throw new Error(await res.json())
             }
         }catch(e){
-            console.log('err', e)
+            // console.log('err', e)
+            handleSameDateError('같은 날짜 존재')
         }finally{
             setLoading(false)
         }
@@ -68,6 +76,7 @@ export default function Upload() {
                 value={prettyJson} 
                 readOnly 
             />
+            {sameDateError && <p>{sameDateError}</p>}
             <button onClick={handleSubmit}>{
                 loading ? '등록 중...' : '등록'
             }</button>

@@ -1,6 +1,7 @@
 import YoutubeLink from "./YoutubeLink";
 import styles from "./components.module.css";
 import Modal from "./Modal";
+import { v4 } from "uuid";
 
 export default function YoutubeLinks({ videos, term }) {
   const multiKill = (title) => {
@@ -18,7 +19,7 @@ export default function YoutubeLinks({ videos, term }) {
   return (
     <>
       {Object.entries(videos).map((video) => (
-        <li className={styles.list} key={video[1]._id}>
+        <li className={styles.list} key={video[1]._id?video[1]._id:v4()}>
           <Modal
             multikill={filteredAndMultiKill(video[1].title)}
             filtered={filteredAndMultiKill(video[1].title)}
