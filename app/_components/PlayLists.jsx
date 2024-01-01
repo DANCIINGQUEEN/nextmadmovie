@@ -5,15 +5,12 @@ import { useState } from "react";
 import Pagination from "./pagination";
 import styles from "./components.module.css";
 import { v4 } from "uuid";
-import oldPlayLists4 from '../../libs/oldplaylists4';
-import oldPlayLists3 from '../../libs/oldplaylists3';
-import oldPlayLists2 from '../../libs/oldplaylists2';
-import oldPlayLists1 from '../../libs/oldplaylists1';
+import oldPlayLists from "@/libs/oldplaylists"
 
 
 
 export default function PlayLists({ playlists }) {
-  const playlist=playlists.playlist.concat(oldPlayLists4,oldPlayLists3,oldPlayLists2,oldPlayLists1)
+  const playlist=playlists.playlist.concat(oldPlayLists)
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태 관리
   const [filteredCurrentPage, setFilteredCurrentPage] = useState(1); // 필터 페이지 상태 관리
   const [searchTerm, setSearchTerm] = useState("");
