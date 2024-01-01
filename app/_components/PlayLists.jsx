@@ -13,7 +13,7 @@ import oldPlayLists1 from '../../libs/oldplaylists1';
 
 
 export default function PlayLists({ playlists }) {
-  const playlist=playlists.playlist.concat(oldPlayLists4).concat(oldPlayLists3).concat(oldPlayLists2).concat(oldPlayLists1)
+  const playlist=playlists.playlist.concat(oldPlayLists4,oldPlayLists3,oldPlayLists2,oldPlayLists1)
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태 관리
   const [filteredCurrentPage, setFilteredCurrentPage] = useState(1); // 필터 페이지 상태 관리
   const [searchTerm, setSearchTerm] = useState("");
@@ -82,7 +82,7 @@ export default function PlayLists({ playlists }) {
           {filteredPlaylists.map((playlist) => (
             <FiltersPlayLists
               playlist={playlist}
-              key={playlist[1]._id?playlist[1]._id:v4()}
+              key={v4()}
               term={searchTerm}
             />
           ))}
