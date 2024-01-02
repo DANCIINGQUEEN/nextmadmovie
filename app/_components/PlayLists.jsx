@@ -66,7 +66,7 @@ export default function PlayLists({ playlists }) {
       {!searchTerm ? (
         <>
           {Object.entries(paginatedPlaylist).map((playlist) => (
-            <PlayList playlist={playlist} key={playlist[1]._id?playlist[1]._id:v4()} />
+            <PlayList playlist={playlist} key={v4()} />
           ))}
           <Pagination
             currentPage={currentPage}
