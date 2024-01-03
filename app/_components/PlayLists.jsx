@@ -5,28 +5,33 @@ import { useState } from "react";
 import Pagination from "./pagination";
 import styles from "./components.module.css";
 import { v4 } from "uuid";
-import oldPlayLists from "@/libs/oldplaylists"
-
-
+import oldPlayLists from "@/libs/oldplaylists";
+import { usePageNumber } from "@/context/PageNumberContext";
+import { useSearchTerm } from "@/context/SearchTermContext";
 
 export default function PlayLists({ playlists }) {
-  const playlist=playlists.playlist.concat(oldPlayLists)
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태 관리
-  const [filteredCurrentPage, setFilteredCurrentPage] = useState(1); // 필터 페이지 상태 관리
-  const [searchTerm, setSearchTerm] = useState("");
+  const playlist = playlists.playlist.concat(oldPlayLists);
 
-  const handlePageNumberClick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-};
+  const { currentPage, setCurrentPage } = usePageNumber();
 
-  const CARD_PER_PAGE = 5; // 페이지당 표시할 항목 수
+  // const [currentFilteredPage, setCurrentFilteredPage] = useState(1);
+  const { currentFilteredPage, setCurrentFilteredPage } = usePageNumber();
+
+  // const [searchTerm, setSearchTerm] = useState("");
+  const { searchTerm, setSearchTerm } = useSearchTerm();
+
+  const handlePageNumberClick = () =>
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+  const CARD_PER_PAGE = 5;
   const playlistLength = playlist?.length;
   const maxPage = Math.ceil(playlistLength / CARD_PER_PAGE);
 
-  const paginatedPlaylist = playlist?.slice(
+  let paginatedPlaylist = playlist?.slice(
     (currentPage - 1) * CARD_PER_PAGE,
     (currentPage - 1) * CARD_PER_PAGE + CARD_PER_PAGE
   );
+  paginatedPlaylist = Object.entries(paginatedPlaylist);
 
   let filteredPlaylists = playlist?.filter((pl) =>
     pl.video.some((v) =>
@@ -37,8 +42,8 @@ export default function PlayLists({ playlists }) {
   const filteredPlaylistsLength = filteredPlaylists?.length;
 
   filteredPlaylists = filteredPlaylists?.slice(
-    (filteredCurrentPage - 1) * CARD_PER_PAGE,
-    (filteredCurrentPage - 1) * CARD_PER_PAGE + CARD_PER_PAGE
+    (currentFilteredPage - 1) * CARD_PER_PAGE,
+    (currentFilteredPage - 1) * CARD_PER_PAGE + CARD_PER_PAGE
   );
   const maxfilterdPage = Math.ceil(filteredPlaylistsLength / CARD_PER_PAGE);
 
@@ -47,25 +52,34 @@ export default function PlayLists({ playlists }) {
     handlePageNumberClick();
   };
   const changeFilteredPage = (page) => {
-    if (page >= 1 && page <= maxfilterdPage) setFilteredCurrentPage(page);
+    if (page >= 1 && page <= maxfilterdPage) setCurrentFilteredPage(page);
     handlePageNumberClick();
-
   };
 
-  
+  const clearSearch = () => {
+    setSearchTerm("");
+    setCurrentFilteredPage(1);
+  }
+
   return (
-    <div>
-      <input
-        type="text"
-        className={styles.search}
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="검색어"
-      />
+    <>
+      <div className={styles.search}>
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="검색어"
+        />
+        {searchTerm && (
+          <button onClick={clearSearch}>
+            ⨉
+          </button>
+        )}
+      </div>
 
       {!searchTerm ? (
         <>
-          {Object.entries(paginatedPlaylist).map((playlist) => (
+          {paginatedPlaylist.map((playlist) => (
             <PlayList playlist={playlist} key={v4()} />
           ))}
           <Pagination
@@ -84,12 +98,12 @@ export default function PlayLists({ playlists }) {
             />
           ))}
           <Pagination
-            currentPage={filteredCurrentPage}
+            currentPage={currentFilteredPage}
             maxPage={maxfilterdPage}
             onChangePage={changeFilteredPage}
           />
         </>
       )}
-    </div>
+    </>
   );
 }

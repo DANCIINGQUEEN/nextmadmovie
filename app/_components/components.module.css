@@ -25,24 +25,28 @@
 }
 
 
-/* .nav span {
-  display: inline-block;
-  animation: bounce 0.5s infinite;
-} */
-
 .search {
+  margin-right:35%;
+}
+.search > input{
   border: none;
   border-radius: 10px;
   padding: 10px;
   width:150px;
-  margin-right:35%;
   background-color: rgba(0, 0, 0, 0.02);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.search:focus {
+.search > input:focus{
   outline: none;
   background-color: rgba(0, 0, 0, 0.1);
   transition: 1s ease;
+}
+.search > button{
+  border: none;
+  background-color: transparent;
+  margin-left: 5px;
+  font-weight: bold;
+  font-size: 15px;
 }
 
 @keyframes fadeIn {
@@ -66,8 +70,9 @@
 .container {
   background-color: rgba(0, 0, 0, 0.03);
   border-radius: 30px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  /* margin-top: 20px;
+  margin-bottom: 20px; */
+  margin:20px 10px;
   padding: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   perspective: 1000px;

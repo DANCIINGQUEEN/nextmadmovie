@@ -1,5 +1,5 @@
 import styles from './components.module.css'
-export default function Pagenation({ currentPage, maxPage, onChangePage }) {
+export default function Pagination({ currentPage, maxPage, onChangePage }) {
     const pagesToShow = () => {
         const pages = [];
         for (let i = currentPage - 2; i <= currentPage + 2; i++) {

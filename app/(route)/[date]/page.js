@@ -3,6 +3,9 @@ import styles from "./page.module.css";
 import Card from "./Card";
 import Link from "next/link";
 import oldPlayLists from "@/libs/oldplaylists";
+import { FaLongArrowAltLeft } from "react-icons/fa";
+import { BiHomeAlt2 } from "react-icons/bi";
+import { MdHomeFilled } from "react-icons/md";
 import { v4 } from "uuid";
 
 const dateSplit = (date) => {
@@ -40,7 +43,7 @@ export default async function DatePage({ params }) {
   return (
     <div className={styles.videoContainer}>
       <Link href={"/"} className={styles.goHome}>
-        ← home
+        <FaLongArrowAltLeft/> <MdHomeFilled/>
       </Link>
       <h4>{title}</h4>
       {pl.video.map((pl) => (
