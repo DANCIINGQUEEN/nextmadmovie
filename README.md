@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 롤매드무비 Next.js
 
-## Getting Started
+# <https://nextmadmovie.vercel.app>
 
-First, run the development server:
+# **롤매드무비** 배경
+  기존의 <a href='https://lolmadmovie.vercel.app'>롤매드무비</a>의 단점을 보완하고자 Next.js로 개발</br>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  ## 기존의 롤매드무비 사이트의 문제와 해결
+  
+  1. 카카오톡이나 디스코드 등 사이트에 링크 공유시 각각 페이지마다 SEO OG(Open Graph)가 동적으로 할당되지 못함</br>
+    => Next.js의 SSR을 이용해 OG(Open Graph)를 동적으로 할당</br>
+  2. 하드코딩된 오래된 코드들을 수정하는것보다 새로 만드는것이 낫다는 판단</br>
+    => 두서없던 오래된 코드들을 재정비</br>
+  3. 플레이리스트를 업로드하기 어려움</br>
+    => 유튜브 스튜디오 페이지에서 업로드한 영상 정보들을 JSON형식으로 크롤링하여 업로드</br>
+  4. 플레이리스트 수정, 삭제 기능 없음</br>
+    => 플레이리스트 수정, 삭제 기능 추가</br>
+  5. 검색 기능 없음</br>
+    => 검색 기능 추가</br>
+  6. 페이지네이션이 제대로 구현되지 못함</br>
+    => 페이지네이션 개선</br>
