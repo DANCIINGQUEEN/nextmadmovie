@@ -17,6 +17,27 @@
   <p>해결</p>
 </p> 
 
+    ```javascript
+        export async function generateMetadata({ params: { date } }) {
+        const title = `${dateSplit(date)}의 영상들`;
+        const desc = `${dateSplit(date)}의 하이라이트`;
+        return {
+          title: title,
+          description: desc,
+          openGraph: {
+            title: title,
+            description: desc,
+            site_name: "LOL MAD MOVIE",
+          },
+          robots: {
+            index: false,
+            follow: true,
+            nocache: true,
+          },
+        };
+      }
+    ```
+
   2. 하드코딩된 오래된 코드들을 수정하는것보다 새로 만드는것이 낫다는 판단</br>
     => 두서없던 오래된 코드들을 재정비</br>
 
