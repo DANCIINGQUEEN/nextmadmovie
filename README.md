@@ -109,7 +109,6 @@ nextmadmovie
 ├─app
 │  ├─(route)
 │  │  ├─edit
-│  │  ├─rain
 │  │  ├─upload
 │  │  └─[date]
 │  ├─api
