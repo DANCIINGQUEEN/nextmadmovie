@@ -99,3 +99,27 @@
 <img src="./exec/current/solution6.jpg">
   <p>최대 4페이지까지 보이도록 하고 맨 앞, 맨 뒤, 이전, 다음 버튼 추가</p>
 </p>
+
+
+
+## ⚙ 사용 기술
+
+### :earth_africa: Environment
+
+<div>
+    <img src="https://img.shields.io/badge/Git-FFFFFF?style=flat&logo=Git&logoColor=F05032">
+    <img src="https://img.shields.io/badge/VSC-0078d7?style=flat&logo=visualstudiocode&logoColor=000000">
+</div>
+
+<br />
+
+### :pick: Development
+
+<div>
+    <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=Next.js&logoColor=FFFFFF">
+    <img src="https://img.shields.io/badge/Vercel-23000000?style=flat&logo=vercel&logoColor=009639">
+  <img src="https://img.shields.io/badge/youtube-FF0000?style=flat&logo=youtube&logoColor=4479A1">
+  <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=flat&logo=mongodb&logoColor=4479A1">
+</div>
+
+<br />
