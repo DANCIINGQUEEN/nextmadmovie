@@ -21,6 +21,7 @@
 
   <p>=> Next.js의 SSR을 이용해 OG(Open Graph)를 동적으로 할당</p>
 </p>
+
    ```javascript
    export async function generateMetadata({ params: { date } }) {
    const title = `${dateSplit(date)}의 영상들`;
@@ -44,7 +45,7 @@
 
 ## 2. 하드코딩된 오래된 코드들을 수정하는것보다 새로 만드는것이 낫다는 판단
 
-    => 두서없던 오래된 코드들을 재정비
+   => 두서없던 오래된 코드들을 재정비
 
   ```javascript
     const FHD221004 = [
