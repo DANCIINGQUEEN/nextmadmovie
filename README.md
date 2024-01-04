@@ -18,46 +18,46 @@
 <img src="./exec/legacy/problem1.jpg">
 <img src="./exec/current/solution1.jpg">
 
-      ```javascript
-          export async function generateMetadata({ params: { date } }) {
-          const title = `${dateSplit(date)}의 영상들`;
-          const desc = `${dateSplit(date)}의 하이라이트`;
-          return {
-            title: title,
-            description: desc,
-            openGraph: {
-              title: title,
-              description: desc,
-              site_name: "LOL MAD MOVIE",
-            },
-            robots: {
-              index: false,
-              follow: true,
-              nocache: true,
-            },
-          };
-        }
-      ```
 
   <p>=> Next.js의 SSR을 이용해 OG(Open Graph)를 동적으로 할당</p>
 </p>
+   ```javascript
+   export async function generateMetadata({ params: { date } }) {
+   const title = `${dateSplit(date)}의 영상들`;
+   const desc = `${dateSplit(date)}의 하이라이트`;
+   return {
+     title: title,
+     description: desc,
+     openGraph: {
+       title: title,
+       description: desc,
+       site_name: "LOL MAD MOVIE",
+     },
+     robots: {
+       index: false,
+       follow: true,
+       nocache: true,
+     },
+   };
+ }
+  ```
 
 ## 2. 하드코딩된 오래된 코드들을 수정하는것보다 새로 만드는것이 낫다는 판단
 
-</br>
-    => 두서없던 오래된 코드들을 재정비</br>
+    => 두서없던 오래된 코드들을 재정비
 
-    ```javascript
-      const FHD221004 = [
-          ["킨드 궁에서 꺼내는 우르곳",
-              "https://www.youtube.com/watch?v=3CdHCl5Q9yA"],
-          ["애매한 이니시 성공",
-              "https://www.youtube.com/watch?v=a5g7pPqxWNo"],
-          ["브랜드 살리기",
-              "https://www.youtube.com/watch?v=DsVd_Hp0FHo"],
-      ]
-      // 이런 식으로 하드코딩된 플레이리스트들을 따로 추출해 재정렬
-    ```
+  ```javascript
+    const FHD221004 = [
+        ["킨드 궁에서 꺼내는 우르곳",
+            "https://www.youtube.com/watch?v=3CdHCl5Q9yA"],
+        ["애매한 이니시 성공",
+            "https://www.youtube.com/watch?v=a5g7pPqxWNo"],
+        ["브랜드 살리기",
+            "https://www.youtube.com/watch?v=DsVd_Hp0FHo"],
+    ]
+    // 이런 식으로 하드코딩된 플레이리스트들을 따로 추출해 재정렬
+  ```
+
 
 ## 3. 플레이리스트를 업로드하기 어려움
 
