@@ -60,15 +60,38 @@
 <img src="./exec/legacy/problem3.jpg">
    <img src="./exec/legacy/problem3-1.jpg">
   <p>유튜브 스튜디오에서 일일이 제목과 링크를 복사붙여넣기를 했어야함</p>
-<img src="./exec/current/solution3.jpg">
 <img src="./exec/current/solution3-2.jpg">
+<img src="./exec/current/solution3.jpg">
   <p>유튜브 스튜디오에서 해당 일자의 영상들을 플레이리스트 오브젝트로 만들어 출력된 내용을 복사붙여넣기함</p>
 </p> 
 
     
   4. 플레이리스트 수정, 삭제 기능 없음</br>
     => 플레이리스트 수정, 삭제 기능 추가</br>
+
+     <p align="center">
+<img src="./exec/current/solution4.jpg">
+  <p>해결</p>
+</p> 
   5. 검색 기능 없음</br>
     => 검색 기능 추가</br>
+
+   <p align="center">
+<img src="./exec/current/solution5.jpg">
+  <p>해결</p>
+</p> 
+
+
   6. 페이지네이션이 제대로 구현되지 못함</br>
     => 페이지네이션 개선</br>
+
+
+  <p align="center">
+<img src="./exec/legacy/problem6.jpg">
+  <p>어느 페이지를 눌렀는지 모르는 문제, 페이지 번호 출력범위 제한 없는 문제</p>
+<img src="./exec/current/solution6.jpg">
+  <p>최대 4페이지까지 보이도록 하고 맨 앞, 맨 뒤, 이전, 다음 버튼 추가</p>
+</p> 
+
+
+    
