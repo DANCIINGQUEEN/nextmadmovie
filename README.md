@@ -24,22 +24,22 @@
 
    ```javascript
    export async function generateMetadata({ params: { date } }) {
-   const title = `${dateSplit(date)}의 영상들`;
-   const desc = `${dateSplit(date)}의 하이라이트`;
-   return {
-     title: title,
-     description: desc,
-     openGraph: {
+     const title = `${dateSplit(date)}의 영상들`;
+     const desc = `${dateSplit(date)}의 하이라이트`;
+     return {
        title: title,
        description: desc,
-       site_name: "LOL MAD MOVIE",
-     },
-     robots: {
-       index: false,
-       follow: true,
-       nocache: true,
-     },
-   };
+       openGraph: {
+         title: title,
+         description: desc,
+         site_name: "LOL MAD MOVIE",
+       },
+       robots: {
+         index: false,
+         follow: true,
+         nocache: true,
+       },
+     };
  }
   ```
 
