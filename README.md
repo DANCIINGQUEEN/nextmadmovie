@@ -9,8 +9,29 @@
   
   1. 카카오톡이나 디스코드 등 사이트에 링크 공유시 각각 페이지마다 SEO OG(Open Graph)가 동적으로 할당되지 못함</br>
     => Next.js의 SSR을 이용해 OG(Open Graph)를 동적으로 할당</br>
+
+  <p align="center">
+<img src="./exec/legacy/problem1.jpg">
+  <p>문제</p>
+<img src="./exec/current/solution1.jpg">
+  <p>해결</p>
+</p> 
+
   2. 하드코딩된 오래된 코드들을 수정하는것보다 새로 만드는것이 낫다는 판단</br>
     => 두서없던 오래된 코드들을 재정비</br>
+
+    ```javascript
+      const FHD221004 = [
+          ["킨드 궁에서 꺼내는 우르곳",
+              "https://www.youtube.com/watch?v=3CdHCl5Q9yA"],
+          ["애매한 이니시 성공",
+              "https://www.youtube.com/watch?v=a5g7pPqxWNo"],
+          ["브랜드 살리기",
+              "https://www.youtube.com/watch?v=DsVd_Hp0FHo"],
+      ]
+      // 이런 식으로 하드코딩된 플레이리스트들을 따로 추출해 재정렬
+    ```
+        
   3. 플레이리스트를 업로드하기 어려움</br>
     => 유튜브 스튜디오 페이지에서 업로드한 영상 정보들을 JSON형식으로 크롤링하여 업로드</br>
   4. 플레이리스트 수정, 삭제 기능 없음</br>
