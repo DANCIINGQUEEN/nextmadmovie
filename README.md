@@ -55,6 +55,17 @@
         
   3. 플레이리스트를 업로드하기 어려움</br>
     => 유튜브 스튜디오 페이지에서 업로드한 영상 정보들을 JSON형식으로 크롤링하여 업로드</br>
+
+ <p align="center">
+<img src="./exec/legacy/problem3.jpg">
+   <img src="./exec/legacy/problem3-1.jpg">
+  <p>유튜브 스튜디오에서 일일이 제목과 링크를 복사붙여넣기를 했어야함</p>
+<img src="./exec/current/solution3.jpg">
+<img src="./exec/current/solution3-2.jpg">
+  <p>유튜브 스튜디오에서 해당 일자의 영상들을 플레이리스트 오브젝트로 만들어 출력된 내용을 복사붙여넣기함</p>
+</p> 
+
+    
   4. 플레이리스트 수정, 삭제 기능 없음</br>
     => 플레이리스트 수정, 삭제 기능 추가</br>
   5. 검색 기능 없음</br>
