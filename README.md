@@ -74,16 +74,16 @@
 
   </br> 
    <p align="center">
-    <img src="./exec/current/solution4.jpg">
     <p>=> 플레이리스트 수정, 삭제 기능 추가</p>
+    <img src="./exec/current/solution4.jpg">
   </p>
 
 ## 5. 검색 기능 없음
 
   </br>
    <p align="center">
-    <img src="./exec/current/solution5.jpg">
     <p> => 검색 기능 추가</p>
+    <img src="./exec/current/solution5.jpg">
   </p>
 
 ## 6. 페이지네이션이 제대로 구현되지 못함
