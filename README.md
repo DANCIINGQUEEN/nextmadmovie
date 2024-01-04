@@ -103,6 +103,26 @@
 
 
 
+## 프로젝트 디렉터리 구조
+```bash
+nextmadmovie
+├─app
+│  ├─(route)
+│  │  ├─edit
+│  │  ├─rain
+│  │  ├─upload
+│  │  └─[date]
+│  ├─api
+│  │  ├─playlist
+│  │  │  └─[date]
+│  │  └─[id]
+│  └─_components
+├─context
+├─libs
+└─models
+
+```
+
 ## ⚙ 사용 기술
 
 ### :earth_africa: Environment
