@@ -9,10 +9,6 @@
 ## 기존의 롤매드무비 사이트의 문제와 해결
 
 ## 1. 카카오톡이나 디스코드 등 사이트에 링크 공유시 각각 페이지마다 SEO OG(Open Graph)가 동적으로 할당되지 못함
-
- </br>
-    </br>
-
   <p align="center">
   <p>문제</p>
 <img src="./exec/legacy/problem1.jpg">
