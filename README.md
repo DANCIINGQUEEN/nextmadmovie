@@ -86,7 +86,7 @@
     => 페이지네이션 개선</br>
 
 
-  <p align="center">
+  <p>
 <img src="./exec/legacy/problem6.jpg">
   <p>어느 페이지를 눌렀는지 모르는 문제, 페이지 번호 출력범위 제한 없는 문제</p>
 <img src="./exec/current/solution6.jpg">
