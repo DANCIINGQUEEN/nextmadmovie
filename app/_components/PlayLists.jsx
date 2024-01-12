@@ -14,16 +14,15 @@ export default function PlayLists({ playlists }) {
 
   const { currentPage, setCurrentPage } = usePageNumber();
 
-  // const [currentFilteredPage, setCurrentFilteredPage] = useState(1);
   const { currentFilteredPage, setCurrentFilteredPage } = usePageNumber();
 
-  // const [searchTerm, setSearchTerm] = useState("");
   const { searchTerm, setSearchTerm } = useSearchTerm();
 
   const handlePageNumberClick = () =>
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-  const CARD_PER_PAGE = 5;
+  const CARD_PER_PAGE = window.innerWidth < 768 ? 5 : 10;
+  
   const playlistLength = playlist?.length;
   const maxPage = Math.ceil(playlistLength / CARD_PER_PAGE);
 
@@ -78,7 +77,7 @@ export default function PlayLists({ playlists }) {
       </div>
 
       {!searchTerm ? (
-        <>
+        <div className={styles.playlists}>
           {paginatedPlaylist.map((playlist) => (
             <PlayList playlist={playlist} key={v4()} />
           ))}
@@ -87,9 +86,9 @@ export default function PlayLists({ playlists }) {
             maxPage={maxPage}
             onChangePage={changePage}
           />
-        </>
+        </div>
       ) : (
-        <>
+        <div className={styles.playlists}>
           {filteredPlaylists.map((playlist) => (
             <FiltersPlayLists
               playlist={playlist}
@@ -102,7 +101,7 @@ export default function PlayLists({ playlists }) {
             maxPage={maxfilterdPage}
             onChangePage={changeFilteredPage}
           />
-        </>
+        </div>
       )}
     </>
   );
