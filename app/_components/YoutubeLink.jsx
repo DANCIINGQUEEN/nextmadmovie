@@ -53,8 +53,20 @@ export default function YoutubeLink({ link, ratio, isHome }) {
     },
   };
 
-  const videoCode = link.toString().split("watch?v=")[1];
-  const source = `https://img.youtube.com/vi/${videoCode}/maxresdefault.jpg`;
+  let videoCode = null;
+  try {
+    const url = new URL(link.toString());
+    videoCode = url.searchParams.get("v");
+    // youtu.be 단축 URL 처리
+    if (!videoCode && url.hostname === "youtu.be") {
+      videoCode = url.pathname.slice(1);
+    }
+  } catch {
+    videoCode = null;
+  }
+  const source = videoCode
+    ? `https://img.youtube.com/vi/${videoCode}/maxresdefault.jpg`
+    : "";
 
   const videoComponent = <Youtube videoId={videoCode} opts={opts} onEnd={handlePlayToggle} />
   
@@ -63,6 +75,8 @@ export default function YoutubeLink({ link, ratio, isHome }) {
       style={{ width: playerWidth}}
     />
   
+  if (!videoCode) return null;
+
   return (
     <div className={styles.video}>
       {isHome

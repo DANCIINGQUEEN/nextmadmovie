@@ -1,8 +1,12 @@
 import connectMongoDB from "@/libs/mongodb"
 import playList from "@/models/playlist"
 import { NextResponse } from "next/server"
+import { checkAdminSecret } from "@/libs/apiAuth"
 
 export async function POST(req) {
+    const authError = checkAdminSecret(req);
+    if (authError) return authError;
+
     try {
         const playlist = await req.json();
         await connectMongoDB();
@@ -14,7 +18,8 @@ export async function POST(req) {
         await playList.create(playlist);
         return NextResponse.json({ message: "PlayList created successfully" }, { status: 201 });
     } catch (error) {
-        return NextResponse.json({ message: error.message }, { status: 500 });
+        console.error("POST /api/playlist error:", error);
+        return NextResponse.json({ message: "요청 처리 중 오류가 발생했습니다." }, { status: 500 });
     }
 }
 
@@ -24,7 +29,8 @@ export async function GET() {
         const playlist = await playList.find({}).sort({ _id: -1 });
         return NextResponse.json({ playlist });
     } catch (error) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        console.error("GET /api/playlist error:", error);
+        return NextResponse.json({ message: "요청 처리 중 오류가 발생했습니다." }, { status: 500 });
     }
 }
 
