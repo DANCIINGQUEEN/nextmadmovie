@@ -23,11 +23,26 @@ export async function POST(req) {
     }
 }
 
-export async function GET() {
+const DEFAULT_LIMIT = 20;
+const MAX_LIMIT = 100;
+
+export async function GET(req) {
     try {
+        const { searchParams } = new URL(req.url);
+        const page = Math.max(1, parseInt(searchParams.get("page") ?? "1", 10));
+        const limit = Math.min(MAX_LIMIT, Math.max(1, parseInt(searchParams.get("limit") ?? String(DEFAULT_LIMIT), 10)));
+        const skip = (page - 1) * limit;
+
         await connectMongoDB();
-        const playlist = await playList.find({}).sort({ _id: -1 });
-        return NextResponse.json({ playlist });
+        const [playlist, total] = await Promise.all([
+            playList.find({}).sort({ _id: -1 }).skip(skip).limit(limit),
+            playList.countDocuments(),
+        ]);
+
+        return NextResponse.json({
+            playlist,
+            pagination: { page, limit, total, totalPages: Math.ceil(total / limit) },
+        });
     } catch (error) {
         console.error("GET /api/playlist error:", error);
         return NextResponse.json({ message: "요청 처리 중 오류가 발생했습니다." }, { status: 500 });
