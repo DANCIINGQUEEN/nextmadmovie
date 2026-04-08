@@ -13,7 +13,8 @@ const dateSplit = (date) => {
   return `${dateParts[0]}년 ${dateParts[1]}월 ${dateParts[2]}일`;
 };
 
-export async function generateMetadata({ params: { date } }) {
+export async function generateMetadata({ params }) {
+  const { date } = await params;
   const title = `${dateSplit(date)}의 영상들`;
   const desc = `${dateSplit(date)}의 하이라이트`;
   return {
@@ -33,7 +34,7 @@ export async function generateMetadata({ params: { date } }) {
 }
 
 export default async function DatePage({ params }) {
-  const date = params.date;
+  const { date } = await params;
   const title = `${dateSplit(date)}의 영상들`;
 
   const playlist = await getPlaylistByDate(date);

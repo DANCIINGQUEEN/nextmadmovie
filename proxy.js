@@ -20,7 +20,7 @@ function getRateLimit(ip) {
   return { allowed: record.count <= MAX_REQUESTS, remaining: Math.max(0, remaining) };
 }
 
-export function middleware(req) {
+export function proxy(req) {
   const { pathname } = req.nextUrl;
 
   // API 라우트에만 적용

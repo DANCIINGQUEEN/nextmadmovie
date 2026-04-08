@@ -9,7 +9,7 @@ export async function PUT(req, { params }) {
 
   try {
     const playlist = await req.json();
-    const id = params.id;
+    const { id } = await params;
     await connectMongoDB();
     await playList.findByIdAndUpdate(id, playlist);
     return NextResponse.json({ message: "수정 완료" }, { status: 200 });
@@ -24,7 +24,7 @@ export async function DELETE(req, { params }) {
   if (authError) return authError;
 
   try {
-    const id = params.id;
+    const { id } = await params;
     await connectMongoDB();
     await playList.findByIdAndDelete(id);
     return NextResponse.json({ message: "삭제 완료" }, { status: 200 });
