@@ -4,7 +4,7 @@ export default async function deletePlaylist(id){
         const res=await fetch(`${apiUrl}/${id}`,{
             method:"DELETE",
             headers: {
-                "x-admin-secret": process.env.NEXT_PUBLIC_ADMIN_SECRET ?? "",
+                "x-admin-secret": process.env.ADMIN_SECRET ?? "",
             },
         })
         if(!res.ok) throw new Error("An error occurred")

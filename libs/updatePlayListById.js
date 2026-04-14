@@ -6,7 +6,7 @@ export default async function updatePlaylist(id, playlist) {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
-            "x-admin-secret": process.env.NEXT_PUBLIC_ADMIN_SECRET ?? "",
+            "x-admin-secret": process.env.ADMIN_SECRET ?? "",
         },
         body: playlist,
       });

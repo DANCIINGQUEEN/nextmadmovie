@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm test:*)",
+      "Bash(node -e \"const c = require\\('jest-config'\\); console.log\\(Object.keys\\(c\\)\\)\")",
+      "Bash(node -e \"const cfg = require\\('./node_modules/jest/build/jest.js'\\)\")",
+      "Bash(npx jest:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(npm --version)",
+      "Bash(npx npm-check-updates:*)",
+      "Bash(ls -la /c/Users/park/Desktop/park/program/claude_code/project4_nextmadmovie/nextmadmovie/.eslint*)",
+      "Bash(cat /c/Users/park/Desktop/park/program/claude_code/project4_nextmadmovie/nextmadmovie/.eslintrc*)",
+      "Bash(npm run:*)",
+      "Bash(node:*)",
+      "Bash(git rm:*)",
+      "Bash(npm audit:*)"
+    ]
+  }
+}

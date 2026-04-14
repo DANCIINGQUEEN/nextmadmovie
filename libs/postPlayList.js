@@ -5,7 +5,7 @@ export default async function postPlaylist(playlist){
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "x-admin-secret": process.env.NEXT_PUBLIC_ADMIN_SECRET ?? "",
+                "x-admin-secret": process.env.ADMIN_SECRET ?? "",
             },
             body: playlist,
         });

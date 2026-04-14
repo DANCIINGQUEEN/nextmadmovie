@@ -1,6 +1,7 @@
 import connectMongoDB from "@/libs/mongodb"
 import playList from "@/models/playlist"
 import { NextResponse } from "next/server"
+import { auditLog, safeErrorResponse } from "@/libs/security"
 
 const DATE_REGEX = /^\d{2}-\d{2}-\d{2}$/;
 
@@ -14,10 +15,9 @@ export async function GET(req, {params}){
     try {
         await connectMongoDB()
         const playlist = await playList.findOne({ date })
+        auditLog("PLAYLIST_READ", { method: "GET", path: `/api/playlist/${date}` });
         return NextResponse.json({ playlist }, { status: 200 })
     } catch (error) {
-        console.error("GET /api/playlist/[date] error:", error)
-        return NextResponse.json({ message: "요청 처리 중 오류가 발생했습니다." }, { status: 500 })
+        return safeErrorResponse(error);
     }
 }
-
