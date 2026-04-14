@@ -1,7 +1,7 @@
 "use client";
 import getPlaylistByDate from "@/libs/getPlayListByDate";
 import EditForm from "./EditForm";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "./page.module.css";
 
 export default function Edit() {
@@ -9,31 +9,36 @@ export default function Edit() {
   const [playlist, setPlaylist] = useState(null);
   const [playlistId, setPlaylistId] = useState("");
   const [error, setError] = useState("");
-
   const [isLoading, setIsLoading] = useState(false);
+  const errorTimerRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (errorTimerRef.current) clearTimeout(errorTimerRef.current);
+    };
+  }, []);
 
   const mapVideos = (videos) =>
     videos.map(({ title, link }) => ({ title, link }));
 
   const handleError = (message) => {
-    console.error(message);
     setError(message);
-    setTimeout(() => setError(""), 2000);
+    if (errorTimerRef.current) clearTimeout(errorTimerRef.current);
+    errorTimerRef.current = setTimeout(() => setError(""), 2000);
   };
 
   const searchPlaylist = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const playlist = await getPlaylistByDate(searchDate);
-      if (!playlist) throw new Error("no playlist");
-      setPlaylistId(playlist.playlist._id);
-      const video = mapVideos(playlist.playlist.video);
-      const date = playlist.playlist.date;
-      const formattedJson = JSON.stringify({ date, video }, null, 1);
-      setPlaylist(formattedJson);
-    } catch (e) {
-      handleError("no playlist");
+      const result = await getPlaylistByDate(searchDate);
+      if (!result?.playlist) throw new Error("no playlist");
+      setPlaylistId(result.playlist._id);
+      const video = mapVideos(result.playlist.video);
+      const date = result.playlist.date;
+      setPlaylist(JSON.stringify({ date, video }, null, 1));
+    } catch {
+      handleError("플레이리스트를 찾을 수 없습니다.");
     } finally {
       setIsLoading(false);
     }

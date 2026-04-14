@@ -1,8 +1,8 @@
 "use client"
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { apiUrl } from "../../api/api"
 import styles from "./page.module.css"
+import { uploadPlaylistAction } from "./actions"
 
 export default function Upload() {
   const [jsonInput, setJsonInput] = useState("")
@@ -10,28 +10,26 @@ export default function Upload() {
   const [loading, setLoading] = useState(false)
   const [sameDateError, setSameDateError] = useState("")
   const [copied, setCopied] = useState(false)
-
-  const handleJsonChange = (e) => setJsonInput(e.target.value)
+  const errorTimerRef = useRef(null)
 
   const router = useRouter()
 
-  //오늘 한국 날짜 반환 함수
+  useEffect(() => {
+    return () => {
+      if (errorTimerRef.current) clearTimeout(errorTimerRef.current);
+    };
+  }, []);
+
   const getToday = (f) => {
     const now = new Date()
     const year = now.getFullYear()
     const month = now.getMonth() + 1
     const day = now.getDate()
-
-    // 두 자리 수 형식으로 일자와 월을 변환하는 내부 함수
-    const formatNumber = (num) => (num < 10 ? `0${num}` : num)
-
-    // 연도 포맷 결정
+    const pad = (num) => (num < 10 ? `0${num}` : num)
     const formattedYear = f === 1 ? year : year.toString().slice(-2)
-
-    // 날짜 포맷 결정
     return f === 1
       ? `${formattedYear}. ${month}. ${day}.`
-      : `${formattedYear}-${formatNumber(month)}-${formatNumber(day)}`
+      : `${formattedYear}-${pad(month)}-${pad(day)}`
   }
 
   const defaultJson = `{
@@ -58,9 +56,9 @@ export default function Upload() {
         console.log("플레이리스트 개수 : ",results.length)
         let resultString = JSON.stringify(results)
         resultString=resultString.slice(1,resultString.length-1)
-    
+
         let textArea = document.createElement('textarea');
-        textArea.style.position = 'fixed'; 
+        textArea.style.position = 'fixed';
         textArea.style.left = '0';
         textArea.style.top = '0';
         textArea.style.opacity = '0';
@@ -77,9 +75,11 @@ export default function Upload() {
         }
         document.body.removeChild(textArea);
     };
-    
+
     q('${getToday(1)}');
       `
+
+  const handleJsonChange = (e) => setJsonInput(e.target.value)
 
   const copyToClipboard = async () => {
     try {
@@ -89,51 +89,44 @@ export default function Upload() {
       console.error("Failed to copy URL to clipboard", error)
     }
   }
+
   const handleSameDateError = (message) => {
-    console.error(message)
     setSameDateError(message)
-    setTimeout(() => setSameDateError(""), 2000)
+    if (errorTimerRef.current) clearTimeout(errorTimerRef.current)
+    errorTimerRef.current = setTimeout(() => setSameDateError(""), 2000)
   }
+
+  const formatJson = () => {
+    try {
+      const obj = JSON.parse(jsonInput)
+      setPrettyJson(JSON.stringify(obj, null, 1))
+    } catch (error) {
+      setPrettyJson("Invalid JSON: " + error.message)
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setLoading(true)
-    if (!jsonInput) {
-      alert("데이터가 없음")
+    if (!prettyJson) {
+      alert("정렬 버튼을 먼저 눌러주세요.")
       return
     }
+    setLoading(true)
     try {
-      const res = await fetch(`${apiUrl}/playlist`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: prettyJson,
-      })
-      if (res.ok) {
+      const result = await uploadPlaylistAction(prettyJson)
+      if (result.error) {
+        handleSameDateError(result.error)
+      } else {
         router.push("/")
         router.refresh()
-      } else {
-        throw new Error(await res.json())
       }
-    } catch (e) {
-      // console.log('err', e)
-      handleSameDateError("같은 날짜 존재")
+    } catch {
+      handleSameDateError("오류가 발생했습니다.")
     } finally {
       setLoading(false)
     }
   }
 
-  const formatJson = () => {
-    try {
-      // 입력된 JSON을 파싱하고 다시 정렬하여 문자열로 변환
-      const obj = JSON.parse(jsonInput)
-      const formattedJson = JSON.stringify(obj, null, 1) // 4는 들여쓰기 수준
-      setPrettyJson(formattedJson)
-    } catch (error) {
-      // JSON 파싱 오류 처리
-      setPrettyJson("Invalid JSON: " + error.message)
-    }
-  }
   return (
     <div className={styles.uploadContainer}>
       <h4>영상 업로드</h4>

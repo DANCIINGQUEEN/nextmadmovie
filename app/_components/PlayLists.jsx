@@ -1,10 +1,9 @@
 "use client";
 import PlayList from "./PlayList";
 import FiltersPlayLists from "./FiltersPlayLists";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Pagination from "./pagination";
 import styles from "./components.module.css";
-import { v4 } from "uuid";
 import oldPlayLists from "@/libs/oldplaylists";
 import { usePageNumber } from "@/context/PageNumberContext";
 import { useSearchTerm } from "@/context/SearchTermContext";
@@ -12,53 +11,55 @@ import { useSearchTerm } from "@/context/SearchTermContext";
 export default function PlayLists({ playlists }) {
   const playlist = playlists.playlist.concat(oldPlayLists);
 
-  const { currentPage, setCurrentPage } = usePageNumber();
-
-  const { currentFilteredPage, setCurrentFilteredPage } = usePageNumber();
-
+  const { currentPage, setCurrentPage, currentFilteredPage, setCurrentFilteredPage } = usePageNumber();
   const { searchTerm, setSearchTerm } = useSearchTerm();
+
+  const [cardsPerPage, setCardsPerPage] = useState(10);
+
+  useEffect(() => {
+    const update = () => setCardsPerPage(window.innerWidth < 768 ? 5 : 10);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const handlePageNumberClick = () =>
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-  const CARD_PER_PAGE = window.innerWidth < 768 ? 5 : 10;
-  
-  const playlistLength = playlist?.length;
-  const maxPage = Math.ceil(playlistLength / CARD_PER_PAGE);
+  const playlistLength = playlist.length;
+  const maxPage = Math.ceil(playlistLength / cardsPerPage);
 
-  let paginatedPlaylist = playlist?.slice(
-    (currentPage - 1) * CARD_PER_PAGE,
-    (currentPage - 1) * CARD_PER_PAGE + CARD_PER_PAGE
-  );
-  paginatedPlaylist = Object.entries(paginatedPlaylist);
-
-  let filteredPlaylists = playlist?.filter((pl) =>
-    pl.video.some((v) =>
-      v.title.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+  const paginatedPlaylist = playlist.slice(
+    (currentPage - 1) * cardsPerPage,
+    currentPage * cardsPerPage
   );
 
-  const filteredPlaylistsLength = filteredPlaylists?.length;
-
-  filteredPlaylists = filteredPlaylists?.slice(
-    (currentFilteredPage - 1) * CARD_PER_PAGE,
-    (currentFilteredPage - 1) * CARD_PER_PAGE + CARD_PER_PAGE
+  const filteredPlaylists = playlist.filter((pl) =>
+    pl.video.some((v) => v.title.toLowerCase().includes(searchTerm.toLowerCase()))
   );
-  const maxfilterdPage = Math.ceil(filteredPlaylistsLength / CARD_PER_PAGE);
+
+  const filteredPlaylistsLength = filteredPlaylists.length;
+  const maxFilteredPage = Math.ceil(filteredPlaylistsLength / cardsPerPage);
+
+  const paginatedFiltered = filteredPlaylists.slice(
+    (currentFilteredPage - 1) * cardsPerPage,
+    currentFilteredPage * cardsPerPage
+  );
 
   const changePage = (page) => {
     if (page >= 1 && page <= maxPage) setCurrentPage(page);
     handlePageNumberClick();
   };
+
   const changeFilteredPage = (page) => {
-    if (page >= 1 && page <= maxfilterdPage) setCurrentFilteredPage(page);
+    if (page >= 1 && page <= maxFilteredPage) setCurrentFilteredPage(page);
     handlePageNumberClick();
   };
 
   const clearSearch = () => {
     setSearchTerm("");
     setCurrentFilteredPage(1);
-  }
+  };
 
   return (
     <>
@@ -70,16 +71,14 @@ export default function PlayLists({ playlists }) {
           placeholder="검색어"
         />
         {searchTerm && (
-          <button onClick={clearSearch}>
-            ⨉
-          </button>
+          <button onClick={clearSearch}>⨉</button>
         )}
       </div>
 
       {!searchTerm ? (
         <div className={styles.playlists}>
-          {paginatedPlaylist.map((playlist) => (
-            <PlayList playlist={playlist} key={v4()} />
+          {paginatedPlaylist.map((pl) => (
+            <PlayList playlist={pl} key={pl.date} />
           ))}
           <Pagination
             currentPage={currentPage}
@@ -89,16 +88,12 @@ export default function PlayLists({ playlists }) {
         </div>
       ) : (
         <div className={styles.playlists}>
-          {filteredPlaylists.map((playlist) => (
-            <FiltersPlayLists
-              playlist={playlist}
-              key={v4()}
-              term={searchTerm}
-            />
+          {paginatedFiltered.map((pl) => (
+            <FiltersPlayLists playlist={pl} key={pl.date} term={searchTerm} />
           ))}
           <Pagination
             currentPage={currentFilteredPage}
-            maxPage={maxfilterdPage}
+            maxPage={maxFilteredPage}
             onChangePage={changeFilteredPage}
           />
         </div>

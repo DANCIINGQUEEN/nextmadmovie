@@ -1,31 +1,24 @@
 import YoutubeLink from "./YoutubeLink";
 import styles from "./components.module.css";
 import Modal from "./Modal";
-import { v4 } from "uuid";
 
-export default function YoutubeLinks({ videos, term }) {
-  const multiKill = (title) => {
+export default function YoutubeLinks({ videos, term = "" }) {
+  const getButtonColor = (title) => {
+    if (term && title.includes(term)) return "yellow";
     if (title.includes("쿼드라")) return "skyblue";
-    else if (title.includes("펜타")) return "#FF0077FF";
-    else return "rgba(0,0,0,0.02)";
-  };
-
-  const filteredAndMultiKill = (title) => {
-    if (title.includes(term)) return "yellow";
-    if (term === '') return "rgba(0,0,0,0.02)";
-    return multiKill(title);
+    if (title.includes("펜타")) return "#FF0077FF";
+    return "rgba(0,0,0,0.02)";
   };
 
   return (
     <>
-      {Object.entries(videos).map((video) => (
-        <li className={styles.list} key={video[1]._id?video[1]._id:v4()}>
+      {videos.map((video, index) => (
+        <li className={styles.list} key={video._id ?? `${video.title}-${index}`}>
           <Modal
-            multikill={filteredAndMultiKill(video[1].title)}
-            filtered={filteredAndMultiKill(video[1].title)}
-            button={<>{video[1].title}</>}
-            render={<YoutubeLink link={video[1].link} ratio={0.9} isHome={true}/>}
-          ></Modal>
+            multikill={getButtonColor(video.title)}
+            button={<>{video.title}</>}
+            render={<YoutubeLink link={video.link} ratio={0.9} isHome={true} />}
+          />
         </li>
       ))}
     </>

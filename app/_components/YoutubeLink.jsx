@@ -8,82 +8,62 @@ export default function YoutubeLink({ link, ratio, isHome }) {
   const [playerWidth, setPlayerWidth] = useState(0);
   const [playerHeight, setPlayerHeight] = useState(0);
 
-  // 재생 상태 변경 핸들러
-  const handlePlayToggle = () => setIsPlaying(!isPlaying);
-  
+  const handlePlayToggle = () => setIsPlaying((prev) => !prev);
 
-  useEffect(() => {
-    // localstorage에 isPlaying값 저장
-    localStorage.setItem("isPlaying", JSON.stringify(isPlaying));
-  }, [isPlaying]);
-  
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
-      const aspectRatio = 16 / 9; // 가로 세로 비율 (16:9)
+      const aspectRatio = 16 / 9;
 
-      // 브라우저 창의 너비에 따라 비율 계산
       let width = windowWidth * ratio;
       let height = width / aspectRatio;
 
-      // 너비가 화면에 맞지 않을 경우, 높이 기준으로 비율 계산
       if (height > windowHeight * 0.7) {
         height = windowHeight * 0.7;
         width = height * aspectRatio;
       }
       setPlayerWidth(Math.floor(width));
       setPlayerHeight(Math.floor(height));
-
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const opts = {
-    height: playerHeight,
-    width: playerWidth,
-    playerVars: {
-      autoplay: 1,
-    },
-  };
+    return () => window.removeEventListener("resize", handleResize);
+  }, [ratio]);
 
   let videoCode = null;
   try {
     const url = new URL(link.toString());
     videoCode = url.searchParams.get("v");
-    // youtu.be 단축 URL 처리
     if (!videoCode && url.hostname === "youtu.be") {
       videoCode = url.pathname.slice(1);
     }
   } catch {
     videoCode = null;
   }
-  const source = videoCode
-    ? `https://img.youtube.com/vi/${videoCode}/maxresdefault.jpg`
-    : "";
 
-  const videoComponent = <Youtube videoId={videoCode} opts={opts} onEnd={handlePlayToggle} />
-  
-  const thumbnailComponent = <img src={source} alt="thumbnail"
-      onClick={handlePlayToggle}
-      style={{ width: playerWidth}}
-    />
-  
   if (!videoCode) return null;
+
+  const opts = {
+    height: playerHeight,
+    width: playerWidth,
+    playerVars: { autoplay: 1 },
+  };
+  const source = `https://img.youtube.com/vi/${videoCode}/maxresdefault.jpg`;
 
   return (
     <div className={styles.video}>
-      {isHome
-        ? videoComponent
-        : isPlaying
-        ? videoComponent
-        : thumbnailComponent}
+      {isHome || isPlaying ? (
+        <Youtube videoId={videoCode} opts={opts} onEnd={handlePlayToggle} />
+      ) : (
+        <img
+          src={source}
+          alt="thumbnail"
+          onClick={handlePlayToggle}
+          style={{ width: playerWidth }}
+        />
+      )}
     </div>
   );
 }

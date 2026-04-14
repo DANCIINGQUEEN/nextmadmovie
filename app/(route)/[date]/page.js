@@ -4,9 +4,7 @@ import Card from "./Card";
 import Link from "next/link";
 import oldPlayLists from "@/libs/oldplaylists";
 import { FaLongArrowAltLeft } from "react-icons/fa";
-import { BiHomeAlt2 } from "react-icons/bi";
 import { MdHomeFilled } from "react-icons/md";
-import { v4 } from "uuid";
 
 const dateSplit = (date) => {
   const dateParts = date.split("-");
@@ -18,18 +16,10 @@ export async function generateMetadata({ params }) {
   const title = `${dateSplit(date)}의 영상들`;
   const desc = `${dateSplit(date)}의 하이라이트`;
   return {
-    title: title,
+    title,
     description: desc,
-    openGraph: {
-      title: title,
-      description: desc,
-      site_name: "LOL MAD MOVIE",
-    },
-    robots: {
-      index: false,
-      follow: true,
-      nocache: true,
-    },
+    openGraph: { title, description: desc, site_name: "LOL MAD MOVIE" },
+    robots: { index: false, follow: true, nocache: true },
   };
 }
 
@@ -37,18 +27,28 @@ export default async function DatePage({ params }) {
   const { date } = await params;
   const title = `${dateSplit(date)}의 영상들`;
 
-  const playlist = await getPlaylistByDate(date);
-  let pl = playlist.playlist;
-  if (!pl) pl = oldPlayLists.find((pl) => pl.date === date);
+  const result = await getPlaylistByDate(date);
+  const pl = result?.playlist ?? oldPlayLists.find((p) => p.date === date);
+
+  if (!pl) {
+    return (
+      <div className={styles.videoContainer}>
+        <Link href="/" className={styles.goHome}>
+          <FaLongArrowAltLeft /> <MdHomeFilled />
+        </Link>
+        <h4>플레이리스트를 찾을 수 없습니다.</h4>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.videoContainer}>
-      <Link href={"/"} className={styles.goHome}>
-        <FaLongArrowAltLeft/> <MdHomeFilled/>
+      <Link href="/" className={styles.goHome}>
+        <FaLongArrowAltLeft /> <MdHomeFilled />
       </Link>
       <h4>{title}</h4>
-      {pl.video.map((pl) => (
-        <Card video={pl} key={v4()} />
+      {pl.video.map((video, index) => (
+        <Card video={video} key={video._id ?? `${date}-${index}`} />
       ))}
     </div>
   );
