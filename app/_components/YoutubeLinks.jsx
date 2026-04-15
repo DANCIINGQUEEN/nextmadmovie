@@ -22,15 +22,15 @@ export default function YoutubeLinks({ videos, term = "" }) {
   };
 
   return (
-    <ul className="flex flex-wrap gap-2 px-6 pb-6 pt-1">
+    <ul className="flex flex-wrap">
       {videos.map((video, index) => {
         const variant = getVariant(video.title);
         return (
-          <li key={video._id ?? `${video.title}-${index}`}>
+          <li key={video._id ?? `${video.title}-${index}`} className="m-[10px]">
             <Dialog>
               <DialogTrigger asChild>
                 <button
-                  className={`rounded border px-4 py-2 text-sm font-medium transition-colors ${variantClass[variant]}`}
+                  className={`rounded-[10px] border text-[15px] px-[0.5em] py-[0.3em] mr-[0.1em] font-medium transition-colors ${variantClass[variant]}`}
                 >
                   {video.title}
                 </button>

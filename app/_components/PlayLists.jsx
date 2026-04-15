@@ -89,7 +89,7 @@ export default function PlayLists({ playlists }) {
       </div>
 
       {/* Playlist grid */}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col">
         {searchTerm
           ? paginatedFiltered.map((pl) => (
               <FiltersPlayLists playlist={pl} key={pl.date} term={searchTerm} />

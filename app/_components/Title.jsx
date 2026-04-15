@@ -23,7 +23,7 @@ export default function Title({ date }) {
   };
 
   return (
-    <div className="flex items-center gap-3 px-6 py-3">
+    <div className="flex items-center justify-center gap-3 py-[5px]">
       <Link
         href={`/${date}`}
         className="text-xs text-[var(--color-teal)] hover:text-[var(--color-gold)] transition-colors underline underline-offset-2"
