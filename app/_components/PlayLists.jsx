@@ -61,9 +61,9 @@ export default function PlayLists({ playlists }) {
   const onChangePage = searchTerm ? changeFilteredPage : changePage;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-6">
+    <div className="mx-auto max-w-2xl px-6 py-10">
       {/* Search bar */}
-      <div className="mb-6 flex items-center gap-2 max-w-xs">
+      <div className="mb-8 flex items-center gap-2">
         <div className="relative flex-1">
           <Input
             type="text"
@@ -89,7 +89,7 @@ export default function PlayLists({ playlists }) {
       </div>
 
       {/* Playlist grid */}
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col gap-6">
         {searchTerm
           ? paginatedFiltered.map((pl) => (
               <FiltersPlayLists playlist={pl} key={pl.date} term={searchTerm} />
