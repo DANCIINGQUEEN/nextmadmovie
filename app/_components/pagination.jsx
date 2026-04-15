@@ -11,7 +11,7 @@ export default function Pagination({ currentPage, maxPage, onChangePage }) {
   };
 
   const btnBase =
-    "flex items-center justify-center rounded border p-[10px] mx-[5px] mt-[10px] mb-[30px] text-sm transition-colors disabled:opacity-30";
+    "flex items-center justify-center rounded border p-[12px] mx-[5px] mt-[10px] mb-[30px] text-sm transition-colors disabled:opacity-30";
   const btnIdle =
     "border-[var(--color-border)] bg-transparent text-[var(--color-text-muted)] hover:border-[var(--color-border-bright)] hover:text-[var(--color-text)]";
   const btnActive =

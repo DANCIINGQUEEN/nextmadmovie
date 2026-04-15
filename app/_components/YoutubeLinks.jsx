@@ -30,7 +30,7 @@ export default function YoutubeLinks({ videos, term = "" }) {
             <Dialog>
               <DialogTrigger asChild>
                 <button
-                  className={`rounded-[10px] border text-[15px] px-[0.5em] py-[0.3em] mr-[0.1em] font-medium transition-colors ${variantClass[variant]}`}
+                  className={`rounded-[10px] border text-[15px] px-[9px] py-[6px] mr-[0.1em] font-medium transition-colors ${variantClass[variant]}`}
                 >
                   {video.title}
                 </button>

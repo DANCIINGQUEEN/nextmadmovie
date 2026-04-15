@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
     <html lang="ko" className={`${inter.variable} ${blackOpsOne.variable}`}>
       <body className={inter.className}>
         <Navigation />
-        <main className="mx-auto min-h-screen">{children}</main>
+        <main className="mx-auto min-h-screen flex flex-col items-center">{children}</main>
       </body>
     </html>
   );
