@@ -1,10 +1,8 @@
 import getPlaylistByDate from "@/libs/getPlayListByDate";
-import styles from "./page.module.css";
 import Card from "./Card";
 import Link from "next/link";
 import oldPlayLists from "@/libs/oldplaylists";
-import { FaLongArrowAltLeft } from "react-icons/fa";
-import { MdHomeFilled } from "react-icons/md";
+import { ArrowLeft, Home } from "lucide-react";
 
 const dateSplit = (date) => {
   const dateParts = date.split("-");
@@ -32,24 +30,39 @@ export default async function DatePage({ params }) {
 
   if (!pl) {
     return (
-      <div className={styles.videoContainer}>
-        <Link href="/" className={styles.goHome}>
-          <FaLongArrowAltLeft /> <MdHomeFilled />
+      <div className="mx-auto max-w-4xl px-4 py-10">
+        <Link
+          href="/"
+          className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-teal)] transition-colors"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          홈으로
         </Link>
-        <h4>플레이리스트를 찾을 수 없습니다.</h4>
+        <p className="text-[var(--color-text-muted)]">플레이리스트를 찾을 수 없습니다.</p>
       </div>
     );
   }
 
   return (
-    <div className={styles.videoContainer}>
-      <Link href="/" className={styles.goHome}>
-        <FaLongArrowAltLeft /> <MdHomeFilled />
+    <div className="mx-auto max-w-4xl px-4 py-10">
+      {/* Back nav */}
+      <Link
+        href="/"
+        className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-teal)] transition-colors"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        홈으로
       </Link>
-      <h4>{title}</h4>
-      {pl.video.map((video, index) => (
-        <Card video={video} key={video._id ?? `${date}-${index}`} />
-      ))}
+
+      {/* Page title */}
+      <h1 className="mb-6 text-xl font-semibold text-[var(--color-gold)]">{title}</h1>
+
+      {/* Video cards */}
+      <div className="flex flex-col gap-4">
+        {pl.video.map((video, index) => (
+          <Card video={video} key={video._id ?? `${date}-${index}`} />
+        ))}
+      </div>
     </div>
   );
 }

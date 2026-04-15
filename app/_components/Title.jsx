@@ -1,7 +1,7 @@
-"use client"
+"use client";
 import Link from "next/link";
-import styles from "./components.module.css";
 import { useState, useRef, useEffect } from "react";
+import { Link2, Check } from "lucide-react";
 
 export default function Title({ date }) {
   const [copied, setCopied] = useState(false);
@@ -23,10 +23,24 @@ export default function Title({ date }) {
   };
 
   return (
-    <div className={styles.badge}>
-      <Link href={`/${date}`}>전체보기</Link>
-      <button onClick={copyToClipboard}>
-        {copied ? "copied!" : "copy"}
+    <div className="flex items-center gap-2 px-4 py-2">
+      <Link
+        href={`/${date}`}
+        className="text-xs text-[var(--color-teal)] hover:text-[var(--color-gold)] transition-colors underline underline-offset-2"
+      >
+        전체보기
+      </Link>
+      <button
+        onClick={copyToClipboard}
+        className="flex items-center gap-1 text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors"
+        aria-label="Copy link"
+      >
+        {copied ? (
+          <Check className="h-3 w-3 text-[var(--color-teal)]" />
+        ) : (
+          <Link2 className="h-3 w-3" />
+        )}
+        <span>{copied ? "copied!" : "copy"}</span>
       </button>
     </div>
   );
