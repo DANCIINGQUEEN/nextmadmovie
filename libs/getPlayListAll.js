@@ -1,13 +1,13 @@
-import { apiUrl } from "@/app/api/api";
+import mongoose from 'mongoose';
+import playList from '@/models/playlist';
 export default async function getPlayListAll() {
-    try{
-        const res=await fetch(`${apiUrl}/playlist?limit=100`, { cache: 'no-store' })
-        if(!res.ok){
-            throw new Error("An error occurred")
-        }
-        let playlists=await res.json()
-        return playlists
-    }catch(e){
-        console.error(e)
-    }
+ if (!process.env.MONGODB_URI) return null;
+ try {
+  await mongoose.connect(process.env.MONGODB_URI, { serverSelectionTimeoutMS: 5000 });
+  const playlist = await playList.find({}).sort({ date: -1 }).lean();
+  return { playlist: JSON.parse(JSON.stringify(playlist)) };
+ } catch {
+  console.error('Playlist database unavailable; using the saved archive.');
+  return null;
+ }
 }
